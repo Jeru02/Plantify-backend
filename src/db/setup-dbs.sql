@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS plantify;
+CREATE DATABASE plantify;
+
+DROP DATABASE IF EXISTS plantify_test;
+CREATE DATABASE plantify_test;
