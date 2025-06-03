@@ -1,7 +1,7 @@
 {
   "name": "plantify-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "listen.js",
   "scripts": {
     "setup-dbs": "psql -f src/db/setup-dbs.sql",
     "seed": "node src/db/seeds/run-seed.ts",

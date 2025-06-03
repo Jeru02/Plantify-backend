@@ -30,11 +30,44 @@ const seed = (plantArray: Plant[]): Promise<any> => {
     `);
     })
     .then(() => {
-      // const formattedPlantsData= plantArray.map(
-      //     (plant: Plant)=> {
-      //     return [plant.plant_id, plant.name, plant.scientific_name];
-      //   }
-      // );
+      const formattedPlantsData: Array<(number | string)[]> = plantArray.map(
+        (plant: Plant) => {
+          return [
+            plant.name,
+            plant.scientific_name,
+            plant.type,
+            plant.description,
+            plant.light_requirements,
+            plant.watering_frequency,
+            plant.bloom_season,
+            plant.mature_height,
+            plant.growth_rate,
+            plant.difficulty,
+            plant.ideal_temperature,
+            plant.toxicity,
+            plant.img_url,
+          ];
+        }
+      );
+
+      const insertPlantQuery: string = format(
+        `INSERT INTO plants(name,
+            scientific_name,
+            type,
+            description,
+            light_requirements,
+            watering_frequency,
+            bloom_season,
+            mature_height,
+            growth_rate,
+            difficulty,
+            ideal_temperature,
+            toxicity,
+            img_url)
+      VALUES %L RETURNING *;`,
+        formattedPlantsData
+      );
+      return db.query(insertPlantQuery).then((Result: any) => {});
     });
 };
 

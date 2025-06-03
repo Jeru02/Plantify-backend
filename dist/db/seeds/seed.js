@@ -31,6 +31,38 @@ const seed = (plantArray) => {
     `);
     })
         .then(() => {
+        const formattedPlantsData = plantArray.map((plant) => {
+            return [
+                plant.name,
+                plant.scientific_name,
+                plant.type,
+                plant.description,
+                plant.light_requirements,
+                plant.watering_frequency,
+                plant.bloom_season,
+                plant.mature_height,
+                plant.growth_rate,
+                plant.difficulty,
+                plant.ideal_temperature,
+                plant.toxicity,
+                plant.img_url,
+            ];
+        });
+        const insertPlantQuery = format(`INSERT INTO plants(name,
+            scientific_name,
+            type,
+            description,
+            light_requirements,
+            watering_frequency,
+            bloom_season,
+            mature_height,
+            growth_rate,
+            difficulty,
+            ideal_temperature,
+            toxicity,
+            img_url)
+      VALUES %L RETURNING *;`, formattedPlantsData);
+        return connection_1.default.query(insertPlantQuery).then((Result) => { });
     });
 };
 exports.default = seed;

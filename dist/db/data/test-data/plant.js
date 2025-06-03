@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const PlantData = [
     {
-        plant_id: 1,
         name: "Sunflower",
         scientific_name: "Helianthus annuus",
         type: "Flower",
@@ -16,9 +15,9 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "21°C to 30°C (70°F to 86°F)",
         toxicity: "Non-toxic to humans and pets",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 2,
         name: "Aloe Vera",
         scientific_name: "Aloe barbadensis miller",
         type: "Succulent",
@@ -32,9 +31,9 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "19°C to 29°C (66°F to 84°F)",
         toxicity: "Mildly toxic to pets if ingested",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 3,
         name: "Lavender",
         scientific_name: "Lavandula angustifolia",
         type: "Herb",
@@ -48,9 +47,9 @@ const PlantData = [
         difficulty: "Moderate",
         ideal_temperature: "18°C to 27°C (65°F to 80°F)",
         toxicity: "Non-toxic to humans, mildly toxic to pets",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 4,
         name: "Peace Lily",
         scientific_name: "Spathiphyllum wallisii",
         type: "Houseplant",
@@ -64,9 +63,9 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "18°C to 27°C (65°F to 80°F)",
         toxicity: "Toxic to pets and humans if ingested",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 5,
         name: "Snake Plant",
         scientific_name: "Sansevieria trifasciata",
         type: "Houseplant",
@@ -80,9 +79,9 @@ const PlantData = [
         difficulty: "Very easy",
         ideal_temperature: "15°C to 29°C (60°F to 85°F)",
         toxicity: "Toxic to pets if ingested",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 6,
         name: "Tomato",
         scientific_name: "Solanum lycopersicum",
         type: "Vegetable",
@@ -96,9 +95,9 @@ const PlantData = [
         difficulty: "Moderate",
         ideal_temperature: "20°C to 27°C (68°F to 81°F)",
         toxicity: "Leaves and stems are toxic if ingested",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 7,
         name: "Basil",
         scientific_name: "Ocimum basilicum",
         type: "Herb",
@@ -112,9 +111,9 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "21°C to 26°C (70°F to 79°F)",
         toxicity: "Non-toxic to humans and pets",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 8,
         name: "Cactus",
         scientific_name: "Various (e.g., Echinocactus grusonii)",
         type: "Succulent",
@@ -128,9 +127,9 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "21°C to 32°C (70°F to 90°F)",
         toxicity: "Non-toxic, but physical spines can be hazardous",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 9,
         name: "Rose",
         scientific_name: "Rosa spp.",
         type: "Flower",
@@ -144,9 +143,9 @@ const PlantData = [
         difficulty: "Moderate",
         ideal_temperature: "16°C to 26°C (60°F to 79°F)",
         toxicity: "Non-toxic, but thorns can cause injury",
+        img_url: "www.google.com",
     },
     {
-        plant_id: 10,
         name: "Spider Plant",
         scientific_name: "Chlorophytum comosum",
         type: "Houseplant",
@@ -160,6 +159,7 @@ const PlantData = [
         difficulty: "Very easy",
         ideal_temperature: "18°C to 27°C (65°F to 80°F)",
         toxicity: "Non-toxic to humans and pets",
+        img_url: "www.google.com",
     },
 ];
 exports.default = PlantData;
