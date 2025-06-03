@@ -1,16 +1,16 @@
-
 import db from "../connection";
 import { Plant } from "../data/test-data/plant";
 const format = require("pg-format");
 
-const seed = (plantArray: Object[]): Promise<any> => {
-
-    return db
-        .query(`
+const seed = (plantArray: Plant[]): Promise<any> => {
+  return db
+    .query(
+      `
     DROP TABLE IF EXISTS plants;   
-    `)
-        .then(() => {
-        return db.query(`
+    `
+    )
+    .then(() => {
+      return db.query(`
    CREATE TABLE plants(
     plant_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -28,19 +28,14 @@ const seed = (plantArray: Object[]): Promise<any> => {
     img_url VARCHAR(1000)
    );    
     `);
-        })
-        .then(() => {
-            // const formattedPlantsData= plantArray.map(
-            //     (plant: Plant)=> {
-            //     return [plant.plant_id, plant.name, plant.scientific_name];
-            //   }
-            // );
     })
+    .then(() => {
+      // const formattedPlantsData= plantArray.map(
+      //     (plant: Plant)=> {
+      //     return [plant.plant_id, plant.name, plant.scientific_name];
+      //   }
+      // );
+    });
+};
 
-
-
-}
-
-
-
-export default seed
+export default seed;

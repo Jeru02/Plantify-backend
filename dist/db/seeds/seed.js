@@ -29,6 +29,8 @@ const seed = (plantArray) => {
     img_url VARCHAR(1000)
    );    
     `);
+    })
+        .then(() => {
     });
 };
 exports.default = seed;

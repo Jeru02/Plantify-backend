@@ -8,8 +8,8 @@ const seed_1 = __importDefault(require("../db/seeds/seed"));
 const plant_1 = __importDefault(require("../db/data/test-data/plant"));
 beforeAll(() => (0, seed_1.default)(plant_1.default));
 afterAll(() => connection_1.default.end());
-describe('plants table', () => {
-    test('plants table exists', () => {
+describe("plants table", () => {
+    test("plants table exists", () => {
         return connection_1.default
             .query(`SELECT EXISTS (
             SELECT FROM
@@ -17,8 +17,8 @@ describe('plants table', () => {
             WHERE
                 table_name = 'plants'
             );`)
-            .then((result) => {
-            console.log(result);
+            .then((Result) => {
+            expect(Result.rows[0].exists).toBe(true);
         });
     });
 });
