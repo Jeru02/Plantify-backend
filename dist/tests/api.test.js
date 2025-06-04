@@ -43,3 +43,29 @@ describe("GET /api/plants", () => {
         });
     });
 });
+describe("GET /api/plants/:plant_id", () => {
+    test("200 - responds with the requested plant by plant_id", () => {
+        return request(api_1.default)
+            .get("/api/plants/1")
+            .expect(200)
+            .then((response) => {
+            expect(response.body.plant).toEqual({
+                plant_id: 1,
+                name: "Sunflower",
+                scientific_name: "Helianthus annuus",
+                type: "Flower",
+                description: "Sunflowers are large, bright, and cheerful annual plants known for their tall stems and striking yellow petals surrounding a seed-filled center.",
+                light_requirements: "Full Sun (6–8 hours of direct sunlight per day)",
+                watering_frequency: "2–3 times per week, depending on soil dryness",
+                soil_type: "Well-draining, loamy soil rich in organic matter",
+                bloom_season: "Summer to early fall",
+                mature_height: "1.5 to 3.5 meters (5–12 feet)",
+                growth_rate: "Fast",
+                difficulty: "Easy",
+                ideal_temperature: "21°C to 30°C (70°F to 86°F)",
+                toxicity: "Non-toxic to humans and pets",
+                img_url: "www.google.com",
+            });
+        });
+    });
+});

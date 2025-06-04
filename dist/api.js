@@ -1,10 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const app = express();
-const getPlants_1 = __importDefault(require("./app/controllers/getPlants"));
-app.get("/api/plants", getPlants_1.default);
+const plants_controller_1 = require("./app/controllers/plants.controller");
+app.get("/api/plants", plants_controller_1.getPlants);
+app.get("/api/plants/:plant_id", plants_controller_1.getPlantById);
 exports.default = app;
