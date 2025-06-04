@@ -4,8 +4,10 @@
   "main": "listen.js",
   "scripts": {
     "setup-dbs": "psql -f src/db/setup-dbs.sql",
-    "seed": "node src/db/seeds/run-seed.ts",
-    "test": "jest"
+    "seed-dev": "node src/db/seeds/run-seed.js",
+    "test": "jest",
+    "start": "node listen.js",
+    "seed-prod": "NODE_ENV=production npm run seed-dev"
   },
   "repository": {
     "type": "git",

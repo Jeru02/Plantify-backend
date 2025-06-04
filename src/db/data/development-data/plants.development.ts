@@ -1,0 +1,361 @@
+export interface Plant {
+  name: string;
+  scientific_name: string;
+  type: string;
+  description: string;
+  light_requirements: string;
+  watering_frequency: string;
+  soil_type: string;
+  bloom_season: string;
+  mature_height: string;
+  growth_rate: string;
+  difficulty: string;
+  ideal_temperature: string;
+  toxicity: string;
+  img_url: string;
+}
+
+const PlantData: Array<Plant> = [
+  {
+    name: "Rose",
+    scientific_name: "Rosa spp.",
+    type: "Shrub",
+    description:
+      "Bushy shrubs with fragrant, layered blooms and thorny stems. Colors range from red to pink to white.",
+    light_requirements: "Full sun",
+    watering_frequency: "Once per week",
+    soil_type: "Well-drained, fertile soil",
+    bloom_season: "Late spring to autumn",
+    mature_height: "1–2 meters",
+    growth_rate: "Moderate",
+    difficulty: "Moderate",
+    ideal_temperature: "15–25°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/3/35/Rose_Bloom_Pink.jpg",
+  },
+  {
+    name: "Sunflower",
+    scientific_name: "Helianthus annuus",
+    type: "Annual",
+    description:
+      "Tall plants with large, round, yellow flower heads and dark centers that follow the sun.",
+    light_requirements: "Full sun",
+    watering_frequency: "Once or twice per week",
+    soil_type: "Well-drained soil",
+    bloom_season: "Summer",
+    mature_height: "1.5–3 meters",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "20–30°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg",
+  },
+  {
+    name: "Lavender",
+    scientific_name: "Lavandula angustifolia",
+    type: "Herb",
+    description:
+      "Grey-green foliage with tall spikes of small purple flowers and a strong scent.",
+    light_requirements: "Full sun",
+    watering_frequency: "Every 1–2 weeks",
+    soil_type: "Sandy, well-drained",
+    bloom_season: "Summer",
+    mature_height: "60–90 cm",
+    growth_rate: "Moderate",
+    difficulty: "Easy",
+    ideal_temperature: "15–30°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/a/a4/Lavandula_angustifolia_3.jpg",
+  },
+  {
+    name: "Tulip",
+    scientific_name: "Tulipa spp.",
+    type: "Bulb",
+    description:
+      "Cup-shaped flowers with smooth green leaves, seen in almost every color.",
+    light_requirements: "Full sun",
+    watering_frequency: "Once per week during growth",
+    soil_type: "Well-drained soil",
+    bloom_season: "Spring",
+    mature_height: "30–60 cm",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "10–18°C",
+    toxicity: "Toxic to pets",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/b/b0/Tulip_-_floriade_canberra.jpg",
+  },
+  {
+    name: "Foxglove",
+    scientific_name: "Digitalis purpurea",
+    type: "Biennial",
+    description:
+      "Towering stalks of tubular purple flowers with spotted interiors.",
+    light_requirements: "Partial shade",
+    watering_frequency: "Keep moist",
+    soil_type: "Fertile, well-drained",
+    bloom_season: "Late spring to summer",
+    mature_height: "1–1.5 meters",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "10–24°C",
+    toxicity: "Highly toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/e/e6/Digitalis_purpurea2_Luc_Viatour.jpg",
+  },
+  {
+    name: "Hydrangea",
+    scientific_name: "Hydrangea macrophylla",
+    type: "Shrub",
+    description:
+      "Large round flower heads in blue, pink, or white depending on soil pH.",
+    light_requirements: "Partial shade",
+    watering_frequency: "Frequent",
+    soil_type: "Moist, well-drained",
+    bloom_season: "Summer to early fall",
+    mature_height: "1–2 meters",
+    growth_rate: "Moderate",
+    difficulty: "Easy",
+    ideal_temperature: "13–24°C",
+    toxicity: "Mildly toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/4/41/Hydrangea_macrophylla3.jpg",
+  },
+  {
+    name: "Daffodil",
+    scientific_name: "Narcissus spp.",
+    type: "Bulb",
+    description:
+      "Yellow or white trumpet-shaped flowers with long green leaves.",
+    light_requirements: "Full sun",
+    watering_frequency: "Weekly during bloom",
+    soil_type: "Well-drained",
+    bloom_season: "Early spring",
+    mature_height: "30–45 cm",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "10–20°C",
+    toxicity: "Toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/f/fb/Narcissus_Flower.jpg",
+  },
+  {
+    name: "Aloe Vera",
+    scientific_name: "Aloe barbadensis miller",
+    type: "Succulent",
+    description:
+      "Fleshy, serrated green leaves filled with healing gel. Used in skin care.",
+    light_requirements: "Bright, indirect sunlight",
+    watering_frequency: "Every 2–3 weeks",
+    soil_type: "Cactus mix",
+    bloom_season: "Spring to summer",
+    mature_height: "30–60 cm",
+    growth_rate: "Slow",
+    difficulty: "Easy",
+    ideal_temperature: "18–27°C",
+    toxicity: "Mildly toxic to pets",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/e/e4/Aloe_vera_flower.JPG",
+  },
+  {
+    name: "Peony",
+    scientific_name: "Paeonia spp.",
+    type: "Perennial",
+    description:
+      "Large, soft, ruffled blooms in pink, red, or white with a sweet scent.",
+    light_requirements: "Full sun",
+    watering_frequency: "Weekly",
+    soil_type: "Well-drained, fertile",
+    bloom_season: "Late spring",
+    mature_height: "60–90 cm",
+    growth_rate: "Moderate",
+    difficulty: "Moderate",
+    ideal_temperature: "10–24°C",
+    toxicity: "Mildly toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/3/32/Paeonia_lactiflora.jpg",
+  },
+  {
+    name: "Marigold",
+    scientific_name: "Tagetes spp.",
+    type: "Annual",
+    description:
+      "Bright orange or yellow flowers with pungent scent and ruffled petals.",
+    light_requirements: "Full sun",
+    watering_frequency: "2–3 times per week",
+    soil_type: "Loamy, well-drained",
+    bloom_season: "Spring to frost",
+    mature_height: "20–60 cm",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "15–30°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/1/1b/Tagetes_erecta.jpg",
+  },
+  {
+    name: "Orchid",
+    scientific_name: "Orchidaceae",
+    type: "Epiphyte",
+    description:
+      "Exotic-looking flowers in diverse shapes and colors, growing from thick aerial roots.",
+    light_requirements: "Bright indirect light",
+    watering_frequency: "Once per week",
+    soil_type: "Orchid mix (bark-based)",
+    bloom_season: "Varies by species",
+    mature_height: "30–60 cm",
+    growth_rate: "Moderate",
+    difficulty: "Moderate",
+    ideal_temperature: "18–24°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/e/e9/Orchidaceae_IMG_9231.jpg",
+  },
+  {
+    name: "Bamboo",
+    scientific_name: "Bambusoideae",
+    type: "Grass",
+    description:
+      "Fast-growing tall stems with segmented joints and narrow leaves.",
+    light_requirements: "Full sun to partial shade",
+    watering_frequency: "Regular watering",
+    soil_type: "Moist, loamy",
+    bloom_season: "Rarely blooms",
+    mature_height: "1–20 meters",
+    growth_rate: "Very fast",
+    difficulty: "Easy",
+    ideal_temperature: "15–35°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/1/1e/Bamboo_forest.jpg",
+  },
+  {
+    name: "Snapdragon",
+    scientific_name: "Antirrhinum majus",
+    type: "Annual/Perennial",
+    description:
+      "Spikes of tubular flowers that resemble dragon jaws when squeezed.",
+    light_requirements: "Full sun",
+    watering_frequency: "1–2 times per week",
+    soil_type: "Well-drained",
+    bloom_season: "Spring to fall",
+    mature_height: "30–90 cm",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "13–24°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/0/03/Snapdragon_White.jpg",
+  },
+  {
+    name: "Chrysanthemum",
+    scientific_name: "Chrysanthemum morifolium",
+    type: "Perennial",
+    description:
+      "Dense flowers with layered petals in vivid colors. Popular in fall gardens.",
+    light_requirements: "Full sun",
+    watering_frequency: "Twice a week",
+    soil_type: "Well-drained, fertile",
+    bloom_season: "Autumn",
+    mature_height: "30–90 cm",
+    growth_rate: "Moderate",
+    difficulty: "Easy",
+    ideal_temperature: "13–18°C",
+    toxicity: "Toxic to pets",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/6/69/Chrysanthemum_indicum.jpg",
+  },
+  {
+    name: "Poppy",
+    scientific_name: "Papaver rhoeas",
+    type: "Annual",
+    description:
+      "Delicate, papery petals with dark centers. Often red, orange, or white.",
+    light_requirements: "Full sun",
+    watering_frequency: "Weekly",
+    soil_type: "Sandy, well-drained",
+    bloom_season: "Late spring to early summer",
+    mature_height: "30–90 cm",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "10–24°C",
+    toxicity: "Mildly toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/4/47/Papaver_rhoeas_L._-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-105.jpg",
+  },
+  {
+    name: "Clematis",
+    scientific_name: "Clematis spp.",
+    type: "Climber",
+    description:
+      "Climbing vine with large star-shaped flowers in various colors.",
+    light_requirements: "Full sun, shaded roots",
+    watering_frequency: "Frequent",
+    soil_type: "Well-drained, fertile",
+    bloom_season: "Spring to autumn",
+    mature_height: "2–4 meters",
+    growth_rate: "Fast",
+    difficulty: "Moderate",
+    ideal_temperature: "13–24°C",
+    toxicity: "Toxic if ingested",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/e/e6/Clematis_‘Jackmanii’_002.jpg",
+  },
+  {
+    name: "Zinnia",
+    scientific_name: "Zinnia elegans",
+    type: "Annual",
+    description: "Daisy-like, bright-colored flowers with layered petals.",
+    light_requirements: "Full sun",
+    watering_frequency: "1–2 times per week",
+    soil_type: "Well-drained",
+    bloom_season: "Summer to fall",
+    mature_height: "30–90 cm",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "20–30°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/a/a1/Zinnia_elegans_1zz.jpg",
+  },
+  {
+    name: "Begonia",
+    scientific_name: "Begonia spp.",
+    type: "Annual/Perennial",
+    description: "Waxy leaves with clustered blooms in pink, red or white.",
+    light_requirements: "Indirect light",
+    watering_frequency: "Keep moist",
+    soil_type: "Well-drained, rich",
+    bloom_season: "Spring to fall",
+    mature_height: "15–60 cm",
+    growth_rate: "Moderate",
+    difficulty: "Easy",
+    ideal_temperature: "15–27°C",
+    toxicity: "Toxic to pets",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/d/d0/Begonia_4.jpg",
+  },
+  {
+    name: "Fuchsia",
+    scientific_name: "Fuchsia spp.",
+    type: "Shrub",
+    description:
+      "Pendulous, bell-shaped flowers in pink, purple or red, hanging like earrings.",
+    light_requirements: "Partial shade",
+    watering_frequency: "Regular",
+    soil_type: "Well-drained, moist",
+    bloom_season: "Summer to fall",
+    mature_height: "30–100 cm",
+    growth_rate: "Moderate",
+    difficulty: "Moderate",
+    ideal_temperature: "10–20°C",
+    toxicity: "Non-toxic",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/6/67/Fuchsia_‘Lady_Boothby’_001.jpg",
+  },
+];
+
+export default PlantData;

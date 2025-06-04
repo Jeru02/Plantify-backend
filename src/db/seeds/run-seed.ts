@@ -1,8 +1,12 @@
 
-// const runSeed = () =>{
+const devData = require("../data/development-data/plants.development.ts");
 
+const seed = require("./seed.ts");
 
-//     return seed().then(()=> db.end());
-// }
+const db = require("../connection.ts");
 
-// runSeed();
+const runSeed = () : Promise<any> => {
+  return seed(devData).then(() => db.end());
+};
+
+runSeed();

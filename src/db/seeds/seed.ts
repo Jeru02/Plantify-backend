@@ -1,5 +1,5 @@
 import db from "../connection";
-import { Plant } from "../data/test-data/plant";
+import { Plant } from "../data/test-data/plant.test";
 const format = require("pg-format");
 
 const seed = (plantArray: Plant[]): Promise<any> => {
@@ -19,6 +19,7 @@ const seed = (plantArray: Plant[]): Promise<any> => {
     description TEXT,
     light_requirements TEXT,
     watering_frequency TEXT,
+    soil_type TEXT,
     bloom_season TEXT,
     mature_height TEXT,
     growth_rate VARCHAR(50),
@@ -39,6 +40,7 @@ const seed = (plantArray: Plant[]): Promise<any> => {
             plant.description,
             plant.light_requirements,
             plant.watering_frequency,
+            plant.soil_type,
             plant.bloom_season,
             plant.mature_height,
             plant.growth_rate,
@@ -57,6 +59,7 @@ const seed = (plantArray: Plant[]): Promise<any> => {
             description,
             light_requirements,
             watering_frequency,
+            soil_type,
             bloom_season,
             mature_height,
             growth_rate,

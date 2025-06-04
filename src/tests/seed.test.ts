@@ -1,8 +1,8 @@
 import db from "../db/connection";
 import seed from "../db/seeds/seed";
-import PlantData from "../db/data/test-data/plant";
+import PlantData from "../db/data/test-data/plant.test";
 import { QueryResult } from "pg";
-import { Plant } from "../db/data/test-data/plant";
+import { Plant } from "../db/data/test-data/plant.test";
 
 beforeAll(() => seed(PlantData));
 afterAll(() => db.end());
