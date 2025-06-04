@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../connection"));
-const format = require("pg-format");
+const pg_format_1 = __importDefault(require("pg-format"));
 const seed = (plantArray) => {
     return connection_1.default
         .query(`
@@ -50,7 +50,7 @@ const seed = (plantArray) => {
                 plant.img_url,
             ];
         });
-        const insertPlantQuery = format(`INSERT INTO plants(name,
+        const insertPlantQuery = (0, pg_format_1.default)(`INSERT INTO plants(name,
             scientific_name,
             type,
             description,

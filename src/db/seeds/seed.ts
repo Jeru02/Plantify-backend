@@ -1,6 +1,7 @@
 import db from "../connection";
 import { Plant } from "../data/test-data/plant.test";
-const format = require("pg-format");
+import format from "pg-format"
+
 
 const seed = (plantArray: Plant[]): Promise<any> => {
   return db

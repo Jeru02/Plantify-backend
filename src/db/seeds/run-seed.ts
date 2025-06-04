@@ -1,12 +1,14 @@
 
-const devData = require("../data/development-data/plants.development.ts");
+import seed from "./seed";
 
-const seed = require("./seed.ts");
+import PlantData from "../data/development-data/plants.development";
 
-const db = require("../connection.ts");
+import db from "../connection";
+
 
 const runSeed = () : Promise<any> => {
-  return seed(devData).then(() => db.end());
+  
+  return seed(PlantData).then(() => db.end());
 };
 
 runSeed();

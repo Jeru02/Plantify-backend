@@ -15,7 +15,7 @@ const PlantData = [
         difficulty: "Moderate",
         ideal_temperature: "15–25°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/3/35/Rose_Bloom_Pink.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Rose.jpg",
     },
     {
         name: "Sunflower",
@@ -31,7 +31,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "20–30°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Sunflower.jpg",
     },
     {
         name: "Lavender",
@@ -47,7 +47,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "15–30°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Lavandula_angustifolia_3.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Lavender.jpg",
     },
     {
         name: "Tulip",
@@ -63,7 +63,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "10–18°C",
         toxicity: "Toxic to pets",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Tulip_-_floriade_canberra.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Tulip.jpg",
     },
     {
         name: "Foxglove",
@@ -79,7 +79,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "10–24°C",
         toxicity: "Highly toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Digitalis_purpurea2_Luc_Viatour.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Foxglove.jpg",
     },
     {
         name: "Hydrangea",
@@ -95,7 +95,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "13–24°C",
         toxicity: "Mildly toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/4/41/Hydrangea_macrophylla3.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Hydrangea.jpg",
     },
     {
         name: "Daffodil",
@@ -111,7 +111,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "10–20°C",
         toxicity: "Toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Narcissus_Flower.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Daffodil.jpg",
     },
     {
         name: "Aloe Vera",
@@ -127,7 +127,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "18–27°C",
         toxicity: "Mildly toxic to pets",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Aloe_vera_flower.JPG",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Aloe%20Vera.jpg",
     },
     {
         name: "Peony",
@@ -143,7 +143,7 @@ const PlantData = [
         difficulty: "Moderate",
         ideal_temperature: "10–24°C",
         toxicity: "Mildly toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/3/32/Paeonia_lactiflora.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Peony.jpg",
     },
     {
         name: "Marigold",
@@ -159,7 +159,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "15–30°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Tagetes_erecta.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Marigold.jpg",
     },
     {
         name: "Orchid",
@@ -175,7 +175,7 @@ const PlantData = [
         difficulty: "Moderate",
         ideal_temperature: "18–24°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Orchidaceae_IMG_9231.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Orchid.jpg",
     },
     {
         name: "Bamboo",
@@ -191,7 +191,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "15–35°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Bamboo_forest.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Bamboo.jpg",
     },
     {
         name: "Snapdragon",
@@ -207,7 +207,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "13–24°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/0/03/Snapdragon_White.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Snapdragon.jpg",
     },
     {
         name: "Chrysanthemum",
@@ -223,7 +223,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "13–18°C",
         toxicity: "Toxic to pets",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/6/69/Chrysanthemum_indicum.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Chrysanthemum.jpg",
     },
     {
         name: "Poppy",
@@ -239,7 +239,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "10–24°C",
         toxicity: "Mildly toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/4/47/Papaver_rhoeas_L._-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-105.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Poppy.jpg",
     },
     {
         name: "Clematis",
@@ -255,7 +255,7 @@ const PlantData = [
         difficulty: "Moderate",
         ideal_temperature: "13–24°C",
         toxicity: "Toxic if ingested",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Clematis_‘Jackmanii’_002.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Clematis.jpg",
     },
     {
         name: "Zinnia",
@@ -271,7 +271,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "20–30°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Zinnia_elegans_1zz.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Zinnia.jpg",
     },
     {
         name: "Begonia",
@@ -287,7 +287,7 @@ const PlantData = [
         difficulty: "Easy",
         ideal_temperature: "15–27°C",
         toxicity: "Toxic to pets",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Begonia_4.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Begonia.jpg",
     },
     {
         name: "Fuchsia",
@@ -303,7 +303,7 @@ const PlantData = [
         difficulty: "Moderate",
         ideal_temperature: "10–20°C",
         toxicity: "Non-toxic",
-        img_url: "https://upload.wikimedia.org/wikipedia/commons/6/67/Fuchsia_‘Lady_Boothby’_001.jpg",
+        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Fuchsia.jpg",
     },
 ];
 exports.default = PlantData;
