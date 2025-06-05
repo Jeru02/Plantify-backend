@@ -20,7 +20,7 @@ const getCurrentWeather = (req, res) => {
     axios_1.default
         .get("https://api.weatherapi.com/v1/forecast.json?key=1162c37bb7fa416083d150602252905&q=Manchester&days=5&aqi=no&alerts=yes")
         .then((response) => {
-        res.status(200).send({ currentWeather: response.data.forecast.forecastday[0] });
+        res.status(200).send({ currentWeather: response.data.forecast.forecastday[0].day });
     })
         .catch((error) => {
         console.error(error);

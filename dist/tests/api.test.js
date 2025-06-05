@@ -109,11 +109,30 @@ describe("GET /api/currentWeather", () => {
             .expect(200)
             .then((response) => {
             expect(response.body.currentWeather).toMatchObject({
-                date: expect.any(String),
-                date_epoch: expect.any(Number),
-                day: expect.any(Object),
-                astro: expect.any(Object),
-                hour: expect.any(Array),
+                maxtemp_c: expect.any(Number),
+                maxtemp_f: expect.any(Number),
+                mintemp_c: expect.any(Number),
+                mintemp_f: expect.any(Number),
+                avgtemp_c: expect.any(Number),
+                avgtemp_f: expect.any(Number),
+                maxwind_mph: expect.any(Number),
+                maxwind_kph: expect.any(Number),
+                totalprecip_mm: expect.any(Number),
+                totalprecip_in: expect.any(Number),
+                totalsnow_cm: expect.any(Number),
+                avgvis_km: expect.any(Number),
+                avgvis_miles: expect.any(Number),
+                avghumidity: expect.any(Number),
+                daily_will_it_rain: expect.any(Number),
+                daily_chance_of_rain: expect.any(Number),
+                daily_will_it_snow: expect.any(Number),
+                daily_chance_of_snow: expect.any(Number),
+                condition: {
+                    text: expect.any(String),
+                    icon: expect.any(String),
+                    code: expect.any(Number),
+                },
+                uv: expect.any(Number),
             });
         });
     });
