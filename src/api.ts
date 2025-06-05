@@ -6,6 +6,7 @@ import { getQuestionById } from "./app/controllers/quiz.controller";
 import {
   getCurrentWeather,
   getFakeData,
+  getPlantByImageUrl,
   postImageToPlantNet,
 } from "./external-api";
 
@@ -19,6 +20,8 @@ app.get("/api/fakeData", getFakeData);
 
 app.get("/api/currentWeather", getCurrentWeather);
 
-app.post("/api/post", postImageToPlantNet);
+app.post("/api/plant", postImageToPlantNet);
+
+app.get("/api/plant_name", getPlantByImageUrl);
 
 export default app;

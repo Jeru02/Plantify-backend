@@ -143,3 +143,16 @@ describe("GET /api/currentWeather", () => {
   });
 });
 
+describe("GET /api/plant_name", () => {
+  test.only("200 - responds with the correct plant name", () => {
+    return request(app)
+      .get(
+        "/api/plant_name?img_url=https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Sunflower.jpg"
+      )
+      .expect(200)
+      .then((response: Response) => {
+        expect(response).toEqual("hello");
+        console.log(response.body.plantData, "<<<<>>>>");
+      });
+  });
+});

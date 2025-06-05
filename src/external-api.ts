@@ -37,7 +37,7 @@ export const postImageToPlantNet = (req: Request, res: Response): void => {
 
   const auto: String[] = ["auto"];
   axios
-    .post("my-api.plantnet.org/v2/identify/all", {
+    .post("https://my-api.plantnet.org/v2/identify/all", {
       "include-related-images": false,
       "no-reject": true,
       "nb-results": 5,
@@ -49,6 +49,34 @@ export const postImageToPlantNet = (req: Request, res: Response): void => {
     })
     .then((response) => {
       res.status(201).send({ plantData: response.data });
+    })
+    .catch((error) => {
+      // Handle the error response
+      console.error(error);
+    });
+};
+
+export const getPlantByImageUrl = (req: Request, res: Response): void => {
+  // ?formData = frontend data
+
+  const image = req.query.img_url;
+
+  const auto: String[] = ["auto"];
+  axios
+    .get("https://my-api.plantnet.org/v2/identify/all", {
+      params: {
+        "include-related-images": true,
+        "no-reject": true,
+        "nb-results": 5,
+        lang: "en",
+        type: "kt",
+        "api-key": "2b10iTe1G5xU8fnT08By99h",
+        images: image,
+        organs: "auto",
+      },
+    })
+    .then((response) => {
+      res.status(200).send({ plantData: response.data });
     })
     .catch((error) => {
       // Handle the error response

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postImageToPlantNet = exports.getCurrentWeather = exports.getFakeData = void 0;
+exports.getPlantByImageUrl = exports.postImageToPlantNet = exports.getCurrentWeather = exports.getFakeData = void 0;
 const axios_1 = __importDefault(require("axios"));
 const getFakeData = (req, res) => {
     axios_1.default
@@ -33,7 +33,7 @@ const postImageToPlantNet = (req, res) => {
     const formData = req.params.formData;
     const auto = ["auto"];
     axios_1.default
-        .post("my-api.plantnet.org/v2/identify/all", {
+        .post("https://my-api.plantnet.org/v2/identify/all", {
         "include-related-images": false,
         "no-reject": true,
         "nb-results": 5,
@@ -51,3 +51,24 @@ const postImageToPlantNet = (req, res) => {
     });
 };
 exports.postImageToPlantNet = postImageToPlantNet;
+const getPlantByImageUrl = (req, res) => {
+    const image = req.query.img_url;
+    const auto = ["auto"];
+    axios_1.default
+        .get("https://my-api.plantnet.org/v2/identify/all", {
+        params: {
+            "include-related-images": true,
+            "no-reject": true,
+            "nb-results": 5,
+            lang: "en",
+            type: "kt",
+            "api-key": "2b10iTe1G5xU8fnT08By99h",
+            images: image,
+            organs: ["auto"],
+        },
+    })
+        .then((response) => {
+        res.status(200).send({ plantData: response.data });
+    });
+};
+exports.getPlantByImageUrl = getPlantByImageUrl;
