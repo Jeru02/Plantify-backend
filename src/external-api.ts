@@ -72,11 +72,11 @@ export const getPlantByImageUrl = (req: Request, res: Response): void => {
         type: "kt",
         "api-key": "2b10iTe1G5xU8fnT08By99h",
         images: image,
-        organs: "auto",
+        // organs: auto,
       },
     })
     .then((response) => {
-      res.status(200).send({ plantData: response.data });
+      res.status(200).send({ plantData: response.data.results[0] });
     })
     .catch((error) => {
       // Handle the error response

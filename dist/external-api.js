@@ -64,11 +64,13 @@ const getPlantByImageUrl = (req, res) => {
             type: "kt",
             "api-key": "2b10iTe1G5xU8fnT08By99h",
             images: image,
-            organs: ["auto"],
         },
     })
         .then((response) => {
-        res.status(200).send({ plantData: response.data });
+        res.status(200).send({ plantData: response.data.results[0] });
+    })
+        .catch((error) => {
+        console.error(error);
     });
 };
 exports.getPlantByImageUrl = getPlantByImageUrl;
