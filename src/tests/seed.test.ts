@@ -1,10 +1,11 @@
 import db from "../db/connection";
 import seed from "../db/seeds/seed";
-import PlantData from "../db/data/test-data/plant.test";
+import PlantData from "../db/data/test-data/plant.test-data";
+import QuizData from "../db/data/test-data/quiz.test-data";
 import { QueryResult } from "pg";
-import { Plant } from "../db/data/test-data/plant.test";
+import { Plant } from "../db/data/test-data/plant.test-data";
 
-beforeAll(() => seed(PlantData));
+beforeAll(() => seed(PlantData, QuizData));
 afterAll(() => db.end());
 
 describe("plants table", () => {
@@ -39,6 +40,41 @@ describe("plants table", () => {
 
   test("plant data has been filled", () => {
     return db.query(`SELECT * FROM plants;`).then((Result: QueryResult) => {
+      expect(Result.rowCount).toBe(10);
+    });
+  });
+});
+
+describe("quiz form", () => {
+  test("quiz table exists", () => {
+    return db
+      .query(
+        `SELECT EXISTS (
+            SELECT FROM
+                information_schema.tables
+            WHERE
+                table_name = 'quiz'
+            );`
+      )
+      .then((Result: QueryResult) => {
+        expect(Result.rows[0].exists).toBe(true);
+      });
+  });
+  test("quiz table has the column of question_id which is a serial number", () => {
+    return db
+      .query(
+        `SELECT column_name, data_type, column_default
+            FROM information_schema.columns
+            WHERE table_name = 'quiz'
+            AND column_name = 'question_id';`
+      )
+      .then((Result: QueryResult) => {
+        expect(Result.rows[0].column_name).toBe("question_id");
+        expect(Result.rows[0].data_type).toBe("interger");
+      });
+  });
+  test("quiz data has been filled", () => {
+    return db.query(`SELECT * FROM quiz;`).then((Result: QueryResult) => {
       expect(Result.rowCount).toBe(10);
     });
   });

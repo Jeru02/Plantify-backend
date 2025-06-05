@@ -2,12 +2,13 @@ const request = require("supertest");
 import app from "../api";
 import db from "../db/connection";
 import seed from "../db/seeds/seed";
-import PlantData from "../db/data/test-data/plant.test";
+import PlantData from "../db/data/test-data/plant.test-data";
 import { Response } from "supertest";
 import { QueryResult } from "pg";
+import QuizData from "../db/data/test-data/quiz.test-data";
 
 beforeEach(() => {
-  return seed(PlantData);
+  return seed(PlantData, QuizData);
 });
 afterAll(() => {
   return db.end();
@@ -66,6 +67,21 @@ describe("GET /api/plants/:plant_id", () => {
           ideal_temperature: "21°C to 30°C (70°F to 86°F)",
           toxicity: "Non-toxic to humans and pets",
           img_url: "www.google.com",
+        });
+      });
+  });
+});
+
+describe("GET /api/quiz/:question_id", () => {
+  test("200 - responds with the requested question and answer by question_id", () => {
+    return request(app)
+      .get("/api/quiz/1")
+      .expect(200)
+      .then((response: Response) => {
+        expect(response.body.question).toEqual({
+          question_id: 1,
+          question: "What do plants need to perform photosynthesis?",
+          answer: "Sunlight, water, and carbon dioxide",
         });
       });
   });

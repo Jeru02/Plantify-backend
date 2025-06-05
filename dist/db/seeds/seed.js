@@ -5,10 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../connection"));
 const pg_format_1 = __importDefault(require("pg-format"));
-const seed = (plantArray) => {
+const seed = (plantArray, quizArray) => {
     return connection_1.default
         .query(`
-    DROP TABLE IF EXISTS plants;   
+    DROP TABLE IF EXISTS plants;
+    DROP TABLE IF EXISTS quiz;
     `)
         .then(() => {
         return connection_1.default.query(`
@@ -28,7 +29,13 @@ const seed = (plantArray) => {
     ideal_temperature TEXT,
     toxicity TEXT,
     img_url VARCHAR(1000)
-   );    
+   );   
+   
+   CREATE TABLE quiz(
+   question_id SERIAL PRIMARY KEY,
+   question TEXT,
+   answer TEXT
+   );
     `);
     })
         .then(() => {
@@ -66,6 +73,17 @@ const seed = (plantArray) => {
             img_url)
       VALUES %L RETURNING *;`, formattedPlantsData);
         return connection_1.default.query(insertPlantQuery).then((Result) => { });
+    })
+        .then(() => {
+        const formattedQuizData = quizArray.map((quiz) => {
+            return [quiz.question, quiz.answer];
+        });
+        const insertQuizQuery = (0, pg_format_1.default)(`INSERT INTO quiz(
+            question,
+            answer
+            )
+      VALUES %L RETURNING *;`, formattedQuizData);
+        return connection_1.default.query(insertQuizQuery).then((Result) => { });
     });
 };
 exports.default = seed;

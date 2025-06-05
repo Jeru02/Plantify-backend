@@ -7,9 +7,10 @@ const request = require("supertest");
 const api_1 = __importDefault(require("../api"));
 const connection_1 = __importDefault(require("../db/connection"));
 const seed_1 = __importDefault(require("../db/seeds/seed"));
-const plant_test_1 = __importDefault(require("../db/data/test-data/plant.test"));
+const plant_test_data_1 = __importDefault(require("../db/data/test-data/plant.test-data"));
+const quiz_test_data_1 = __importDefault(require("../db/data/test-data/quiz.test-data"));
 beforeEach(() => {
-    return (0, seed_1.default)(plant_test_1.default);
+    return (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default);
 });
 afterAll(() => {
     return connection_1.default.end();
@@ -65,6 +66,20 @@ describe("GET /api/plants/:plant_id", () => {
                 ideal_temperature: "21°C to 30°C (70°F to 86°F)",
                 toxicity: "Non-toxic to humans and pets",
                 img_url: "www.google.com",
+            });
+        });
+    });
+});
+describe("GET /api/quiz/:question_id", () => {
+    test("200 - responds with the requested question and answer by question_id", () => {
+        return request(api_1.default)
+            .get("/api/quiz/1")
+            .expect(200)
+            .then((response) => {
+            expect(response.body.question).toEqual({
+                question_id: 1,
+                question: "What do plants need to perform photosynthesis?",
+                answer: "Sunlight, water, and carbon dioxide",
             });
         });
     });

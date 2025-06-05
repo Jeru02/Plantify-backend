@@ -1,13 +1,14 @@
 import db from "../connection";
-import { Plant } from "../data/test-data/plant.test";
-import format from "pg-format"
+import { Plant } from "../data/test-data/plant.test-data";
+import { Quiz } from "../data/test-data/quiz.test-data";
+import format from "pg-format";
 
-
-const seed = (plantArray: Plant[]): Promise<any> => {
+const seed = (plantArray: Plant[], quizArray: Quiz[]): Promise<any> => {
   return db
     .query(
       `
-    DROP TABLE IF EXISTS plants;   
+    DROP TABLE IF EXISTS plants;
+    DROP TABLE IF EXISTS quiz;
     `
     )
     .then(() => {
@@ -28,7 +29,13 @@ const seed = (plantArray: Plant[]): Promise<any> => {
     ideal_temperature TEXT,
     toxicity TEXT,
     img_url VARCHAR(1000)
-   );    
+   );   
+   
+   CREATE TABLE quiz(
+   question_id SERIAL PRIMARY KEY,
+   question TEXT,
+   answer TEXT
+   );
     `);
     })
     .then(() => {
@@ -72,6 +79,22 @@ const seed = (plantArray: Plant[]): Promise<any> => {
         formattedPlantsData
       );
       return db.query(insertPlantQuery).then((Result: any) => {});
+    })
+    .then(() => {
+      const formattedQuizData: Array<(number | string)[]> = quizArray.map(
+        (quiz: Quiz) => {
+          return [quiz.question, quiz.answer];
+        }
+      );
+      const insertQuizQuery: string = format(
+        `INSERT INTO quiz(
+            question,
+            answer
+            )
+      VALUES %L RETURNING *;`,
+        formattedQuizData
+      );
+      return db.query(insertQuizQuery).then((Result: any) => {});
     });
 };
 
