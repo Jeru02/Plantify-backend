@@ -30,7 +30,7 @@ const getCurrentWeather = (req, res) => {
 };
 exports.getCurrentWeather = getCurrentWeather;
 const postImageToPlantNet = (req, res) => {
-    const formData = req.params.formData;
+    const formData = req.query.formData;
     const auto = ["auto"];
     axios_1.default
         .post("https://my-api.plantnet.org/v2/identify/all", {
@@ -40,11 +40,10 @@ const postImageToPlantNet = (req, res) => {
         lang: "en",
         type: "kt",
         "api-key": "2b10iTe1G5xU8fnT08By99h",
-        images: [formData],
-        organs: [auto],
+        images: formData,
     })
         .then((response) => {
-        res.status(201).send({ plantData: response.data });
+        res.status(201).send({ plantData: response.data.results[0] });
     })
         .catch((error) => {
         console.error(error);
@@ -67,7 +66,14 @@ const getPlantByImageUrl = (req, res) => {
         },
     })
         .then((response) => {
-        res.status(200).send({ plantData: response.data.results[0] });
+        const prettyData = response.data.results.map((singleResult) => {
+            return {
+                score: singleResult.score,
+                commonName: singleResult.species.commonNames,
+                scientificName: singleResult.species.scientificName,
+            };
+        });
+        res.status(200).send({ plantData: response.data.results });
     })
         .catch((error) => {
         console.error(error);

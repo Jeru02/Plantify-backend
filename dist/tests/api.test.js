@@ -143,7 +143,14 @@ describe("GET /api/plant_name", () => {
             .get("/api/plant_name?img_url=https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Sunflower.jpg")
             .expect(200)
             .then((response) => {
-            console.log(response.body.plantData, "<<<<>>>>");
+            expect(response.body.plantData[0]).toMatchObject({
+                score: expect.any(Number),
+                species: expect.any(Object),
+                images: expect.any(Array),
+                gbif: expect.any(String),
+                powo: expect.any(String),
+                iucn: expect.any(String),
+            });
         });
     });
 });
