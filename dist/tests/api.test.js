@@ -84,3 +84,37 @@ describe("GET /api/quiz/:question_id", () => {
         });
     });
 });
+describe("GET /api/fakeData", () => {
+    test("200 - responds with the requested question and answer by question_id", () => {
+        return request(api_1.default)
+            .get("/api/fakeData")
+            .expect(200)
+            .then((response) => {
+            expect(response.body.fakeData).toEqual({
+                id: 1,
+                title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                price: 109.95,
+                description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+                category: "men's clothing",
+                image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                rating: { rate: 3.9, count: 120 },
+            });
+        });
+    });
+});
+describe("GET /api/currentWeather", () => {
+    test("200 - responds with the requested current weather", () => {
+        return request(api_1.default)
+            .get("/api/currentWeather")
+            .expect(200)
+            .then((response) => {
+            expect(response.body.currentWeather).toMatchObject({
+                date: expect.any(String),
+                date_epoch: expect.any(Number),
+                day: expect.any(Object),
+                astro: expect.any(Object),
+                hour: expect.any(Array),
+            });
+        });
+    });
+});
