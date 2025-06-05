@@ -10,4 +10,5 @@ app.get("/api/plants/:plant_id", plants_controller_1.getPlantById);
 app.get("/api/quiz/:question_id", quiz_controller_1.getQuestionById);
 app.get("/api/fakeData", external_api_1.getFakeData);
 app.get("/api/currentWeather", external_api_1.getCurrentWeather);
+app.post("/api/post", external_api_1.postImageToPlantNet);
 exports.default = app;
