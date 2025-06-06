@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const PlantData = [
     {
         name: "Rose",
-        scientific_name: "Rosa spp.",
+        scientific_name: "Rosa spp",
+        genus: "Rosa",
         type: "Shrub",
         description: "Bushy shrubs with fragrant, layered blooms and thorny stems. Colors range from red to pink to white.",
         light_requirements: "Full sun",
@@ -20,6 +21,7 @@ const PlantData = [
     {
         name: "Sunflower",
         scientific_name: "Helianthus annuus",
+        genus: "Helianthus",
         type: "Annual",
         description: "Tall plants with large, round, yellow flower heads and dark centers that follow the sun.",
         light_requirements: "Full sun",
@@ -36,6 +38,7 @@ const PlantData = [
     {
         name: "Lavender",
         scientific_name: "Lavandula angustifolia",
+        genus: "Lavandula",
         type: "Herb",
         description: "Grey-green foliage with tall spikes of small purple flowers and a strong scent.",
         light_requirements: "Full sun",
@@ -51,7 +54,8 @@ const PlantData = [
     },
     {
         name: "Tulip",
-        scientific_name: "Tulipa spp.",
+        scientific_name: "Tulipa spp",
+        genus: "Tulipa",
         type: "Bulb",
         description: "Cup-shaped flowers with smooth green leaves, seen in almost every color.",
         light_requirements: "Full sun",
@@ -68,6 +72,7 @@ const PlantData = [
     {
         name: "Foxglove",
         scientific_name: "Digitalis purpurea",
+        genus: "Digitalis",
         type: "Biennial",
         description: "Towering stalks of tubular purple flowers with spotted interiors.",
         light_requirements: "Partial shade",
@@ -84,6 +89,7 @@ const PlantData = [
     {
         name: "Hydrangea",
         scientific_name: "Hydrangea macrophylla",
+        genus: "Hydrangea",
         type: "Shrub",
         description: "Large round flower heads in blue, pink, or white depending on soil pH.",
         light_requirements: "Partial shade",
@@ -99,7 +105,8 @@ const PlantData = [
     },
     {
         name: "Daffodil",
-        scientific_name: "Narcissus spp.",
+        scientific_name: "Narcissus spp",
+        genus: "Narcissus",
         type: "Bulb",
         description: "Yellow or white trumpet-shaped flowers with long green leaves.",
         light_requirements: "Full sun",
@@ -116,6 +123,7 @@ const PlantData = [
     {
         name: "Aloe Vera",
         scientific_name: "Aloe barbadensis miller",
+        genus: "Aloe",
         type: "Succulent",
         description: "Fleshy, serrated green leaves filled with healing gel. Used in skin care.",
         light_requirements: "Bright, indirect sunlight",
@@ -131,7 +139,8 @@ const PlantData = [
     },
     {
         name: "Peony",
-        scientific_name: "Paeonia spp.",
+        scientific_name: "Paeonia spp",
+        genus: "Paeonia",
         type: "Perennial",
         description: "Large, soft, ruffled blooms in pink, red, or white with a sweet scent.",
         light_requirements: "Full sun",
@@ -147,7 +156,8 @@ const PlantData = [
     },
     {
         name: "Marigold",
-        scientific_name: "Tagetes spp.",
+        scientific_name: "Tagetes spp",
+        genus: "Tagetes",
         type: "Annual",
         description: "Bright orange or yellow flowers with pungent scent and ruffled petals.",
         light_requirements: "Full sun",
@@ -164,6 +174,7 @@ const PlantData = [
     {
         name: "Orchid",
         scientific_name: "Orchidaceae",
+        genus: "Orchidaceae",
         type: "Epiphyte",
         description: "Exotic-looking flowers in diverse shapes and colors, growing from thick aerial roots.",
         light_requirements: "Bright indirect light",
@@ -180,6 +191,7 @@ const PlantData = [
     {
         name: "Bamboo",
         scientific_name: "Bambusoideae",
+        genus: "Bambusoideae",
         type: "Grass",
         description: "Fast-growing tall stems with segmented joints and narrow leaves.",
         light_requirements: "Full sun to partial shade",
@@ -196,6 +208,7 @@ const PlantData = [
     {
         name: "Snapdragon",
         scientific_name: "Antirrhinum majus",
+        genus: "Antirrhinum",
         type: "Annual/Perennial",
         description: "Spikes of tubular flowers that resemble dragon jaws when squeezed.",
         light_requirements: "Full sun",
@@ -212,6 +225,7 @@ const PlantData = [
     {
         name: "Chrysanthemum",
         scientific_name: "Chrysanthemum morifolium",
+        genus: "Chrysanthemum",
         type: "Perennial",
         description: "Dense flowers with layered petals in vivid colors. Popular in fall gardens.",
         light_requirements: "Full sun",
@@ -228,6 +242,7 @@ const PlantData = [
     {
         name: "Poppy",
         scientific_name: "Papaver rhoeas",
+        genus: "Papaver",
         type: "Annual",
         description: "Delicate, papery petals with dark centers. Often red, orange, or white.",
         light_requirements: "Full sun",
@@ -243,7 +258,8 @@ const PlantData = [
     },
     {
         name: "Clematis",
-        scientific_name: "Clematis spp.",
+        scientific_name: "Clematis spp",
+        genus: "Clematis",
         type: "Climber",
         description: "Climbing vine with large star-shaped flowers in various colors.",
         light_requirements: "Full sun, shaded roots",
@@ -260,50 +276,19 @@ const PlantData = [
     {
         name: "Zinnia",
         scientific_name: "Zinnia elegans",
+        genus: "Zinnia",
         type: "Annual",
         description: "Daisy-like, bright-colored flowers with layered petals.",
         light_requirements: "Full sun",
         watering_frequency: "1–2 times per week",
         soil_type: "Well-drained",
         bloom_season: "Summer to fall",
-        mature_height: "30–90 cm",
+        mature_height: "30–100 cm",
         growth_rate: "Fast",
         difficulty: "Easy",
-        ideal_temperature: "20–30°C",
+        ideal_temperature: "20–26°C",
         toxicity: "Non-toxic",
         img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Zinnia.jpg",
-    },
-    {
-        name: "Begonia",
-        scientific_name: "Begonia spp.",
-        type: "Annual/Perennial",
-        description: "Waxy leaves with clustered blooms in pink, red or white.",
-        light_requirements: "Indirect light",
-        watering_frequency: "Keep moist",
-        soil_type: "Well-drained, rich",
-        bloom_season: "Spring to fall",
-        mature_height: "15–60 cm",
-        growth_rate: "Moderate",
-        difficulty: "Easy",
-        ideal_temperature: "15–27°C",
-        toxicity: "Toxic to pets",
-        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Begonia.jpg",
-    },
-    {
-        name: "Fuchsia",
-        scientific_name: "Fuchsia spp.",
-        type: "Shrub",
-        description: "Pendulous, bell-shaped flowers in pink, purple or red, hanging like earrings.",
-        light_requirements: "Partial shade",
-        watering_frequency: "Regular",
-        soil_type: "Well-drained, moist",
-        bloom_season: "Summer to fall",
-        mature_height: "30–100 cm",
-        growth_rate: "Moderate",
-        difficulty: "Moderate",
-        ideal_temperature: "10–20°C",
-        toxicity: "Non-toxic",
-        img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Fuchsia.jpg",
     },
 ];
 exports.default = PlantData;

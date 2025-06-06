@@ -17,6 +17,7 @@ const seed = (plantArray, quizArray) => {
     plant_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     scientific_name VARCHAR(100),
+    genus VARCHAR(100),
     type VARCHAR(50),
     description TEXT,
     light_requirements TEXT,
@@ -43,6 +44,7 @@ const seed = (plantArray, quizArray) => {
             return [
                 plant.name,
                 plant.scientific_name,
+                plant.genus,
                 plant.type,
                 plant.description,
                 plant.light_requirements,
@@ -59,6 +61,7 @@ const seed = (plantArray, quizArray) => {
         });
         const insertPlantQuery = (0, pg_format_1.default)(`INSERT INTO plants(name,
             scientific_name,
+            genus,
             type,
             description,
             light_requirements,

@@ -12,6 +12,7 @@ const quiz_controller_1 = require("./app/controllers/quiz.controller");
 const external_api_1 = require("./external-api");
 app.get("/api/plants", plants_controller_1.getPlants);
 app.get("/api/plants/:plant_id", plants_controller_1.getPlantById);
+app.get("/api/genus/:genus", plants_controller_1.getPlantByGenus);
 app.get("/api/quiz/:question_id", quiz_controller_1.getQuestionById);
 app.get("/api/fakeData", external_api_1.getFakeData);
 app.get("/api/currentWeather", external_api_1.getCurrentWeather);

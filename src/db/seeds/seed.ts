@@ -17,6 +17,7 @@ const seed = (plantArray: Plant[], quizArray: Quiz[]): Promise<any> => {
     plant_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     scientific_name VARCHAR(100),
+    genus VARCHAR(100),
     type VARCHAR(50),
     description TEXT,
     light_requirements TEXT,
@@ -44,6 +45,7 @@ const seed = (plantArray: Plant[], quizArray: Quiz[]): Promise<any> => {
           return [
             plant.name,
             plant.scientific_name,
+            plant.genus,
             plant.type,
             plant.description,
             plant.light_requirements,
@@ -63,6 +65,7 @@ const seed = (plantArray: Plant[], quizArray: Quiz[]): Promise<any> => {
       const insertPlantQuery: string = format(
         `INSERT INTO plants(name,
             scientific_name,
+            genus,
             type,
             description,
             light_requirements,

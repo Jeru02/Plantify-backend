@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPlantById = exports.getPlants = void 0;
+exports.getPlantByGenus = exports.getPlantById = exports.getPlants = void 0;
 const plants_model_1 = require("../models/plants.model");
 const getPlants = (req, res) => {
     (0, plants_model_1.selectPlants)().then((result) => {
@@ -15,3 +15,9 @@ const getPlantById = (req, res) => {
     });
 };
 exports.getPlantById = getPlantById;
+const getPlantByGenus = (req, res) => {
+    (0, plants_model_1.selectPlantByGenus)(req.params.genus).then((result) => {
+        res.status(200).send({ plant: result.rows[0] });
+    });
+};
+exports.getPlantByGenus = getPlantByGenus;

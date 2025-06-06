@@ -4,6 +4,7 @@ const PlantData = [
     {
         name: "Sunflower",
         scientific_name: "Helianthus annuus",
+        genus: "Helianthus",
         type: "Flower",
         description: "Sunflowers are large, bright, and cheerful annual plants known for their tall stems and striking yellow petals surrounding a seed-filled center.",
         light_requirements: "Full Sun (6–8 hours of direct sunlight per day)",
@@ -20,6 +21,7 @@ const PlantData = [
     {
         name: "Aloe Vera",
         scientific_name: "Aloe barbadensis miller",
+        genus: "Aloe",
         type: "Succulent",
         description: "Aloe Vera is a hardy succulent known for its thick, fleshy leaves that contain a soothing gel used for burns and skin care.",
         light_requirements: "Bright, indirect sunlight or partial sun",
@@ -36,6 +38,7 @@ const PlantData = [
     {
         name: "Lavender",
         scientific_name: "Lavandula angustifolia",
+        genus: "Lavandula",
         type: "Herb",
         description: "Lavender is a fragrant herb valued for its soothing aroma and purple flowers, often used in aromatherapy and cooking.",
         light_requirements: "Full Sun",
@@ -52,6 +55,7 @@ const PlantData = [
     {
         name: "Peace Lily",
         scientific_name: "Spathiphyllum wallisii",
+        genus: "Spathiphyllum",
         type: "Houseplant",
         description: "Peace Lilies are elegant indoor plants with glossy green leaves and white blooms, known for air-purifying properties.",
         light_requirements: "Low to bright indirect light",
@@ -68,6 +72,7 @@ const PlantData = [
     {
         name: "Snake Plant",
         scientific_name: "Sansevieria trifasciata",
+        genus: "Sansevieria",
         type: "Houseplant",
         description: "Snake Plants are hardy and low-maintenance with upright, sword-like leaves, ideal for beginners.",
         light_requirements: "Low to bright indirect light",
@@ -84,6 +89,7 @@ const PlantData = [
     {
         name: "Tomato",
         scientific_name: "Solanum lycopersicum",
+        genus: "Solanum",
         type: "Vegetable",
         description: "Tomato plants are popular garden vegetables producing red, juicy fruits rich in vitamins and antioxidants.",
         light_requirements: "Full Sun",
@@ -100,6 +106,7 @@ const PlantData = [
     {
         name: "Basil",
         scientific_name: "Ocimum basilicum",
+        genus: "Ocimum",
         type: "Herb",
         description: "Basil is a fragrant herb commonly used in cooking, especially in Italian and Southeast Asian dishes.",
         light_requirements: "Full Sun",
@@ -115,7 +122,8 @@ const PlantData = [
     },
     {
         name: "Cactus",
-        scientific_name: "Various (e.g., Echinocactus grusonii)",
+        scientific_name: "Echinocactus grusonii",
+        genus: "Echinocactus",
         type: "Succulent",
         description: "Cacti are desert plants known for their ability to store water, often spiny and highly drought-tolerant.",
         light_requirements: "Full Sun",
@@ -131,7 +139,8 @@ const PlantData = [
     },
     {
         name: "Rose",
-        scientific_name: "Rosa spp.",
+        scientific_name: "Rosa spp",
+        genus: "Rosa",
         type: "Flower",
         description: "Roses are classic flowering shrubs known for their beauty, fragrance, and symbolic meanings.",
         light_requirements: "Full Sun",
@@ -148,6 +157,7 @@ const PlantData = [
     {
         name: "Spider Plant",
         scientific_name: "Chlorophytum comosum",
+        genus: "Chlorophytum",
         type: "Houseplant",
         description: "Spider Plants are popular indoor plants known for their arching leaves and baby plantlets that dangle like spiders.",
         light_requirements: "Bright, indirect light",

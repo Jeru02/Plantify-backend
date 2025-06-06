@@ -26,6 +26,7 @@ describe("GET /api/plants", () => {
             plant_id: expect.any(Number),
             name: expect.any(String),
             scientific_name: expect.any(String),
+            genus: expect.any(String),
             type: expect.any(String),
             description: expect.any(String),
             light_requirements: expect.any(String),
@@ -54,6 +55,7 @@ describe("GET /api/plants/:plant_id", () => {
           plant_id: 1,
           name: "Sunflower",
           scientific_name: "Helianthus annuus",
+          genus: "Helianthus",
           type: "Flower",
           description:
             "Sunflowers are large, bright, and cheerful annual plants known for their tall stems and striking yellow petals surrounding a seed-filled center.",
@@ -144,7 +146,7 @@ describe("GET /api/currentWeather", () => {
 });
 
 describe("GET /api/plant_name", () => {
-  test.only("200 - responds with the correct plant name", () => {
+  xtest("200 - responds with the correct plant name", () => {
     return request(app)
       .get(
         "/api/plant_name?img_url=https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Sunflower.jpg"
@@ -159,6 +161,37 @@ describe("GET /api/plant_name", () => {
           powo: expect.any(String),
           iucn: expect.any(String),
         });
+      });
+  });
+});
+
+
+describe("GET plants by genus", () => {
+  test.only("200 - responds with the requested plant object from the genus", () => {
+    return request(app)
+      .get("/api/genus/Helianthus")
+      .expect(200)
+      .then((response: Response) => {
+
+          expect(response.body.plant).toEqual({
+            "plant_id": 1,
+    name: "Sunflower",
+    scientific_name: "Helianthus annuus",
+    genus: "Helianthus",
+    type: "Flower",
+    description:
+      "Sunflowers are large, bright, and cheerful annual plants known for their tall stems and striking yellow petals surrounding a seed-filled center.",
+    light_requirements: "Full Sun (6–8 hours of direct sunlight per day)",
+    watering_frequency: "2–3 times per week, depending on soil dryness",
+    soil_type: "Well-draining, loamy soil rich in organic matter",
+    bloom_season: "Summer to early fall",
+    mature_height: "1.5 to 3.5 meters (5–12 feet)",
+    growth_rate: "Fast",
+    difficulty: "Easy",
+    ideal_temperature: "21°C to 30°C (70°F to 86°F)",
+    toxicity: "Non-toxic to humans and pets",
+    img_url: "www.google.com",
+  });
       });
   });
 });
