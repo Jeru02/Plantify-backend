@@ -50,14 +50,12 @@ export const postImageToPlantNet = async (req: Request, res: Response): Promise<
       contentType: imageFile.mimetype,
     });
     formData.append('organs', 'leaf'); // You can make this dynamic or user-selected
-    formData.append('include-related-images', 'false');
-    formData.append('no-reject', 'true');
-    formData.append('nb-results', '5');
-    formData.append('lang', 'en');
-    formData.append('type', 'kt');
+    
+    
+    
     // formData.append('api-key', '2b10iTe1G5xU8fnT08By99h');
     const plantNetResponse = await axios.post(
-      'https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h',
+      'https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h&include-related-images=false&no-reject=true&nb-results=5&lang=en&type=kt',
       formData,
       {
         headers: {

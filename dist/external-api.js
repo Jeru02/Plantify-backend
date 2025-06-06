@@ -53,12 +53,7 @@ const postImageToPlantNet = (req, res) => __awaiter(void 0, void 0, void 0, func
             contentType: imageFile.mimetype,
         });
         formData.append('organs', 'leaf');
-        formData.append('include-related-images', 'false');
-        formData.append('no-reject', 'true');
-        formData.append('nb-results', '5');
-        formData.append('lang', 'en');
-        formData.append('type', 'kt');
-        const plantNetResponse = yield axios_1.default.post('https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h', formData, {
+        const plantNetResponse = yield axios_1.default.post('https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h&include-related-images=false&no-reject=true&nb-results=5&lang=en&type=kt', formData, {
             headers: Object.assign({}, formData.getHeaders()),
         });
         res.status(200).json({ plantData: plantNetResponse.data.results[0] });
