@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPlantByImageUrl = exports.postImageToPlantNet = exports.getCurrentWeather = exports.getFakeData = void 0;
 const axios_1 = __importDefault(require("axios"));
-const multer_1 = __importDefault(require("multer"));
 const form_data_1 = __importDefault(require("form-data"));
 const getFakeData = (req, res) => {
     axios_1.default
@@ -40,7 +39,6 @@ const getCurrentWeather = (req, res) => {
     });
 };
 exports.getCurrentWeather = getCurrentWeather;
-const upload = (0, multer_1.default)({ storage: multer_1.default.memoryStorage() });
 const postImageToPlantNet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const imageFile = req.file;
