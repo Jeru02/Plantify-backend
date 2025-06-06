@@ -32,10 +32,14 @@ export const getCurrentWeather = (req: Request, res: Response): void => {
 };
 
 export const postImageToPlantNet = (req: Request, res: Response): void => {
-  // ?formData = frontend data
-  const formData = req.query.formData;
+  
+  const formData = req.body.formData;
 
-  const auto: String[] = ["auto"];
+  //  {
+  //     formData: file[]
+  //     
+  //   };
+
   axios
     .post("https://my-api.plantnet.org/v2/identify/all", {
       "include-related-images": false,
@@ -61,7 +65,7 @@ export const getPlantByImageUrl = (req: Request, res: Response): void => {
 
   const image = req.query.img_url;
 
-  const auto: String[] = ["auto"];
+ 
   axios
     .get("https://my-api.plantnet.org/v2/identify/all", {
       params: {
