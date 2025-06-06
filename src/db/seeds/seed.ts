@@ -2,19 +2,22 @@ import db from "../connection";
 import { Plant } from "../data/test-data/plant.test-data";
 import { Quiz } from "../data/test-data/quiz.test-data";
 import { User } from "../data/test-data/users.test-data";
+import { Like_plant } from "../data/test-data/like_plants.test-data";
 import format from "pg-format";
 
 const seed = (
   plantArray: Plant[],
   quizArray: Quiz[],
-  userArray: User[]
+  userArray: User[],
+  like_plantArray: Like_plant[]
 ): Promise<any> => {
   return db
     .query(
       `
-    DROP TABLE IF EXISTS plants;
-    DROP TABLE IF EXISTS quiz;
-    DROP TABLE IF EXISTS user;
+       DROP TABLE IF EXISTS like_plants;
+       DROP TABLE IF EXISTS plants;
+       DROP TABLE IF EXISTS quiz;
+       DROP TABLE IF EXISTS users;
     `
     )
     .then(() => {
@@ -45,10 +48,18 @@ const seed = (
 
    CREATE TABLE users(
    user_id SERIAL PRIMARY KEY,
-   username VARCHAR(100) NOT NULL,
+   user_name VARCHAR(100) NOT NULL,
    email VARCHAR(100) NOT NULL,
    password_hash TEXT NOT NULL,
    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+   );
+
+   CREATE TABLE like_plants(
+   like_plants_id SERIAL PRIMARY KEY,
+   user_id INTEGER,
+   plant_id INTEGER,
+   FOREIGN KEY (user_id) REFERENCES users(user_id),
+   FOREIGN KEY (plant_id) REFERENCES plants(plant_id)
    )
     `);
     })
@@ -111,16 +122,18 @@ const seed = (
       return db.query(insertQuizQuery).then((Result: any) => {});
     })
     .then(() => {
-      const formattedUserData: Array<(number | string)[]> = userArray.map((user: User) => {
-        return [
-          user.user_name,
-          user.email,
-          user.password_hash,
-          user.created_at
-        ];
-      });
+      const formattedUserData: Array<(number | string)[]> = userArray.map(
+        (user: User) => {
+          return [
+            user.user_name,
+            user.email,
+            user.password_hash,
+            user.created_at,
+          ];
+        }
+      );
       const insertUserQuery: string = format(
-        `INSERT INTO user(
+        `INSERT INTO users(
         user_name,
         email,
         password_hash,
@@ -129,9 +142,26 @@ const seed = (
         VALUES %L RETURNING *;`,
         formattedUserData
       );
-      return db.query(insertUserQuery).then((Result: any) => {})
+      return db.query(insertUserQuery).then((Result: any) => {});
     })
-    ;
+    .then(() => {
+      const formattedLike_plantData: Array<number[]> = like_plantArray.map((like_plant: Like_plant) => {
+        return [
+          like_plant.user_id,
+          like_plant.plant_id
+        ]
+      });
+      const insertLike_plantQuery: string = format(
+        `INSERT INTO like_plants(
+        user_id,
+        plant_id
+        )
+        VALUES %L RETURNING *;
+        `,
+        formattedLike_plantData
+      );
+      return db.query(insertLike_plantQuery).then((Result: any) => { });
+    })
 };
 
 export default seed;

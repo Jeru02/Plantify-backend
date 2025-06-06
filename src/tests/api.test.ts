@@ -6,9 +6,11 @@ import PlantData from "../db/data/test-data/plant.test-data";
 import { Response } from "supertest";
 import { QueryResult } from "pg";
 import QuizData from "../db/data/test-data/quiz.test-data";
+import UserData from "../db/data/test-data/users.test-data";
+import Like_plantData from "../db/data/test-data/like_plants.test-data";
 
 beforeEach(() => {
-  return seed(PlantData, QuizData);
+  return seed(PlantData, QuizData, UserData, Like_plantData);
 });
 afterAll(() => {
   return db.end();
