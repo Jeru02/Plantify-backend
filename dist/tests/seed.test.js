@@ -60,7 +60,7 @@ describe("quiz form", () => {
             AND column_name = 'question_id';`)
             .then((Result) => {
             expect(Result.rows[0].column_name).toBe("question_id");
-            expect(Result.rows[0].data_type).toBe("interger");
+            expect(Result.rows[0].data_type).toBe("integer");
         });
     });
     test("quiz data has been filled", () => {
