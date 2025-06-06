@@ -1,7 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const app = express();
+const multer_1 = __importDefault(require("multer"));
+const upload = (0, multer_1.default)({ storage: multer_1.default.memoryStorage() });
 const plants_controller_1 = require("./app/controllers/plants.controller");
 const quiz_controller_1 = require("./app/controllers/quiz.controller");
 const external_api_1 = require("./external-api");
@@ -10,10 +15,6 @@ app.get("/api/plants/:plant_id", plants_controller_1.getPlantById);
 app.get("/api/quiz/:question_id", quiz_controller_1.getQuestionById);
 app.get("/api/fakeData", external_api_1.getFakeData);
 app.get("/api/currentWeather", external_api_1.getCurrentWeather);
-
-
-
-
-app.post("/api/plant", external_api_1.postImageToPlantNet);
+app.post("/api/plant", upload.single("image"), external_api_1.postImageToPlantNet);
 app.get("/api/plant_name", external_api_1.getPlantByImageUrl);
 exports.default = app;
