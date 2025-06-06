@@ -1,14 +1,20 @@
 import db from "../connection";
 import { Plant } from "../data/test-data/plant.test-data";
 import { Quiz } from "../data/test-data/quiz.test-data";
+import { User } from "../data/test-data/users.test-data";
 import format from "pg-format";
 
-const seed = (plantArray: Plant[], quizArray: Quiz[]): Promise<any> => {
+const seed = (
+  plantArray: Plant[],
+  quizArray: Quiz[],
+  userArray: User[]
+): Promise<any> => {
   return db
     .query(
       `
     DROP TABLE IF EXISTS plants;
     DROP TABLE IF EXISTS quiz;
+    DROP TABLE IF EXISTS user;
     `
     )
     .then(() => {
@@ -36,6 +42,14 @@ const seed = (plantArray: Plant[], quizArray: Quiz[]): Promise<any> => {
    question TEXT,
    answer TEXT
    );
+
+   CREATE TABLE users(
+   user_id SERIAL PRIMARY KEY,
+   username VARCHAR(100) NOT NULL,
+   email VARCHAR(100) NOT NULL,
+   password_hash TEXT NOT NULL,
+   created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+   )
     `);
     })
     .then(() => {
@@ -95,7 +109,29 @@ const seed = (plantArray: Plant[], quizArray: Quiz[]): Promise<any> => {
         formattedQuizData
       );
       return db.query(insertQuizQuery).then((Result: any) => {});
-    });
+    })
+    .then(() => {
+      const formattedUserData: Array<(number | string)[]> = userArray.map((user: User) => {
+        return [
+          user.user_name,
+          user.email,
+          user.password_hash,
+          user.created_at
+        ];
+      });
+      const insertUserQuery: string = format(
+        `INSERT INTO user(
+        user_name,
+        email,
+        password_hash,
+        created_at
+        )
+        VALUES %L RETURNING *;`,
+        formattedUserData
+      );
+      return db.query(insertUserQuery).then((Result: any) => {})
+    })
+    ;
 };
 
 export default seed;
