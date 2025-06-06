@@ -58,8 +58,7 @@ const postImageToPlantNet = (req, res) => __awaiter(void 0, void 0, void 0, func
         formData.append('nb-results', '5');
         formData.append('lang', 'en');
         formData.append('type', 'kt');
-        formData.append('api-key', '2b10iTe1G5xU8fnT08By99h');
-        const plantNetResponse = yield axios_1.default.post('https://my-api.plantnet.org/v2/identify/all', formData, {
+        const plantNetResponse = yield axios_1.default.post('https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h', formData, {
             headers: Object.assign({}, formData.getHeaders()),
         });
         res.status(200).json({ plantData: plantNetResponse.data.results[0] });

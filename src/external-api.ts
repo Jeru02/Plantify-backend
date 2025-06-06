@@ -55,9 +55,9 @@ export const postImageToPlantNet = async (req: Request, res: Response): Promise<
     formData.append('nb-results', '5');
     formData.append('lang', 'en');
     formData.append('type', 'kt');
-    formData.append('api-key', '2b10iTe1G5xU8fnT08By99h');
+    // formData.append('api-key', '2b10iTe1G5xU8fnT08By99h');
     const plantNetResponse = await axios.post(
-      'https://my-api.plantnet.org/v2/identify/all',
+      'https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h',
       formData,
       {
         headers: {
