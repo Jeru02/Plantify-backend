@@ -34,7 +34,6 @@ export const getCurrentWeather = (req: Request, res: Response): void => {
 };
 
 
-const upload = multer ({storage: multer.memoryStorage()})
 
 export const postImageToPlantNet = async (req: Request, res: Response): Promise<void> => {
   
