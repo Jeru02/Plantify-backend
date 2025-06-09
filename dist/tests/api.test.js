@@ -185,8 +185,21 @@ describe("GET /api/genus/:genus", () => {
         });
     });
 });
-xdescribe("GET /api/users", () => {
-    test("", () => { });
+describe("GET /api/users/:user_id", () => {
+    xtest("status 200 - responds with requested user", () => {
+        return request(api_1.default)
+            .get("/api/users/1")
+            .expect(200)
+            .then((response) => {
+            expect(response.body.user).toEqual({
+                user_id: 1,
+                user_name: "alex_morris",
+                email: "alex.morris@example.com",
+                password_hash: "a8f5f167f44f4964e6c998dee827110c",
+                created_at: "2025-06-06T12:34:56Z",
+            });
+        });
+    });
 });
 describe("GET /api/liked_plants/:user_id", () => {
     test("status 200 - responds with requested liked_plants by the correct user_id", () => {

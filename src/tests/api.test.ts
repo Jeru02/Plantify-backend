@@ -197,7 +197,7 @@ describe("GET /api/genus/:genus", () => {
 });
 
 describe("GET /api/users/:user_id", () => {
-  test.only("status 200 - responds with requested user", () => {
+  xtest("status 200 - responds with requested user", () => {
     return request(app)
       .get("/api/users/1")
       .expect(200)
