@@ -6,7 +6,7 @@ import QuizData from "../data/development-data/quiz.development-data";
 
 import db from "../connection";
 
-import UserData from "../data/test-data/users.test-data";
+import UserData from "../data/development-data/users.development-data";
 
 import Liked_plantData from "../data/test-data/liked_plants.test-data";
 

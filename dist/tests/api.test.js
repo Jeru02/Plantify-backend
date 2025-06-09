@@ -229,7 +229,7 @@ describe("Post /api/liked_plants", () => {
         }));
     });
 });
-describe.only("DELETE /api/liked_plants/:liked_plant_id", () => {
+describe("DELETE /api/liked_plants/:liked_plant_id", () => {
     test("status: 204 - delete the liked_plant with the liked_plant_id", () => {
         return request(api_1.default)
             .delete("/api/liked_plants/1")
