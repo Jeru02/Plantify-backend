@@ -5,13 +5,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../connection"));
 const pg_format_1 = __importDefault(require("pg-format"));
-const seed = (plantArray, quizArray, userArray, like_plantArray) => {
+const seed = (plantArray, quizArray, userArray, liked_plantArray) => {
     return connection_1.default
         .query(`
-       DROP TABLE IF EXISTS like_plants;
+      
+       DROP TABLE IF EXISTS liked_plants;
+       DROP TABLE IF EXISTS users;
        DROP TABLE IF EXISTS plants;
        DROP TABLE IF EXISTS quiz;
-       DROP TABLE IF EXISTS users;
+       
+       
     `)
         .then(() => {
         return connection_1.default.query(`
@@ -48,12 +51,12 @@ const seed = (plantArray, quizArray, userArray, like_plantArray) => {
    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
    );
 
-   CREATE TABLE like_plants(
-   like_plants_id SERIAL PRIMARY KEY,
+   CREATE TABLE liked_plants(
+   liked_plants_id SERIAL PRIMARY KEY,
    user_id INTEGER,
    plant_id INTEGER,
-   FOREIGN KEY (user_id) REFERENCES users(user_id),
-   FOREIGN KEY (plant_id) REFERENCES plants(plant_id)
+   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+   FOREIGN KEY (plant_id) REFERENCES plants(plant_id) ON DELETE CASCADE
    )
     `);
     })
@@ -125,19 +128,19 @@ const seed = (plantArray, quizArray, userArray, like_plantArray) => {
         return connection_1.default.query(insertUserQuery).then((Result) => { });
     })
         .then(() => {
-        const formattedLike_plantData = like_plantArray.map((like_plant) => {
+        const formattedLiked_plantData = liked_plantArray.map((liked_plant) => {
             return [
-                like_plant.user_id,
-                like_plant.plant_id
+                liked_plant.user_id,
+                liked_plant.plant_id
             ];
         });
-        const insertLike_plantQuery = (0, pg_format_1.default)(`INSERT INTO like_plants(
+        const insertLiked_plantQuery = (0, pg_format_1.default)(`INSERT INTO liked_plants(
         user_id,
         plant_id
         )
         VALUES %L RETURNING *;
-        `, formattedLike_plantData);
-        return connection_1.default.query(insertLike_plantQuery).then((Result) => { });
+        `, formattedLiked_plantData);
+        return connection_1.default.query(insertLiked_plantQuery).then((Result) => { });
     });
 };
 exports.default = seed;

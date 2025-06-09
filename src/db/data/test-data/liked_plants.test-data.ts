@@ -1,9 +1,9 @@
-export interface Like_plant {
+export interface Liked_plant {
   user_id: number;
   plant_id: number;
 }
 
-const Like_plantData: Array<Like_plant> = [
+const Liked_plantData: Array<Liked_plant> = [
   {
     user_id: 1,
     plant_id: 2,
@@ -18,4 +18,4 @@ const Like_plantData: Array<Like_plant> = [
   }
 ];
 
-export default Like_plantData;
+export default Liked_plantData;

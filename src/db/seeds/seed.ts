@@ -2,22 +2,25 @@ import db from "../connection";
 import { Plant } from "../data/test-data/plant.test-data";
 import { Quiz } from "../data/test-data/quiz.test-data";
 import { User } from "../data/test-data/users.test-data";
-import { Like_plant } from "../data/test-data/like_plants.test-data";
+import { Liked_plant } from "../data/test-data/liked_plants.test-data";
 import format from "pg-format";
 
 const seed = (
   plantArray: Plant[],
   quizArray: Quiz[],
   userArray: User[],
-  like_plantArray: Like_plant[]
+  liked_plantArray: Liked_plant[]
 ): Promise<any> => {
   return db
     .query(
       `
-       DROP TABLE IF EXISTS like_plants;
+      
+       DROP TABLE IF EXISTS liked_plants;
+       DROP TABLE IF EXISTS users;
        DROP TABLE IF EXISTS plants;
        DROP TABLE IF EXISTS quiz;
-       DROP TABLE IF EXISTS users;
+       
+       
     `
     )
     .then(() => {
@@ -55,12 +58,12 @@ const seed = (
    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
    );
 
-   CREATE TABLE like_plants(
-   like_plants_id SERIAL PRIMARY KEY,
+   CREATE TABLE liked_plants(
+   liked_plants_id SERIAL PRIMARY KEY,
    user_id INTEGER,
    plant_id INTEGER,
-   FOREIGN KEY (user_id) REFERENCES users(user_id),
-   FOREIGN KEY (plant_id) REFERENCES plants(plant_id)
+   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+   FOREIGN KEY (plant_id) REFERENCES plants(plant_id) ON DELETE CASCADE
    )
     `);
     })
@@ -148,22 +151,22 @@ const seed = (
       return db.query(insertUserQuery).then((Result: any) => {});
     })
     .then(() => {
-      const formattedLike_plantData: Array<number[]> = like_plantArray.map((like_plant: Like_plant) => {
+      const formattedLiked_plantData: Array<number[]> = liked_plantArray.map((liked_plant: Liked_plant) => {
         return [
-          like_plant.user_id,
-          like_plant.plant_id
+          liked_plant.user_id,
+          liked_plant.plant_id
         ]
       });
-      const insertLike_plantQuery: string = format(
-        `INSERT INTO like_plants(
+      const insertLiked_plantQuery: string = format(
+        `INSERT INTO liked_plants(
         user_id,
         plant_id
         )
         VALUES %L RETURNING *;
         `,
-        formattedLike_plantData
+        formattedLiked_plantData
       );
-      return db.query(insertLike_plantQuery).then((Result: any) => { });
+      return db.query(insertLiked_plantQuery).then((Result: any) => { });
     })
 };
 

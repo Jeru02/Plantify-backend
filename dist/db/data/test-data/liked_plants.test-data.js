@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Like_plantData = [
+const Liked_plantData = [
     {
         user_id: 1,
         plant_id: 2,
@@ -14,4 +14,4 @@ const Like_plantData = [
         plant_id: 4,
     }
 ];
-exports.default = Like_plantData;
+exports.default = Liked_plantData;

@@ -5,9 +5,9 @@ import QuizData from "../db/data/test-data/quiz.test-data";
 import { QueryResult } from "pg";
 import { Plant } from "../db/data/test-data/plant.test-data";
 import UserData from "../db/data/test-data/users.test-data";
-import Like_plantData from "../db/data/test-data/like_plants.test-data";
+import Liked_plantData from "../db/data/test-data/liked_plants.test-data";
 
-beforeAll(() => seed(PlantData, QuizData, UserData, Like_plantData));
+beforeAll(() => seed(PlantData, QuizData, UserData, Liked_plantData));
 afterAll(() => db.end());
 
 describe("plants table", () => {
@@ -119,15 +119,15 @@ describe("users table", () => {
   });
 });
 
-describe.only("like_plants table", () => {
-  test("like_plants table exists", () => {
+describe("liked_plants table", () => {
+  test("liked_plants table exists", () => {
     return db
       .query(
         `SELECT EXISTS (
             SELECT FROM
                 information_schema.tables
             WHERE
-                table_name = 'like_plants'
+                table_name = 'liked_plants'
             );`
       )
       .then((Result: QueryResult) => {
@@ -135,22 +135,22 @@ describe.only("like_plants table", () => {
       });
   });
 
-  test("like_plants table has the column of like_plants_id which is a serial", () => {
+  test("liked_plants table has the column of liked_plants_id which is a serial", () => {
     return db
       .query(
         `SELECT column_name, data_type, column_default
             FROM information_schema.columns
-            WHERE table_name = 'like_plants'
-            AND column_name = 'like_plants_id';`
+            WHERE table_name = 'liked_plants'
+            AND column_name = 'liked_plants_id';`
       )
       .then((Result: QueryResult) => {
-        expect(Result.rows[0].column_name).toBe("like_plants_id");
+        expect(Result.rows[0].column_name).toBe("liked_plants_id");
         expect(Result.rows[0].data_type).toBe("integer");
       });
   });
 
-  test("like_plants data has been filled", () => {
-    return db.query(`SELECT * FROM like_plants;`).then((Result: QueryResult) => {
+  test("liked_plants data has been filled", () => {
+    return db.query(`SELECT * FROM liked_plants;`).then((Result: QueryResult) => {
       expect(Result.rowCount).toBe(3);
     });
   });

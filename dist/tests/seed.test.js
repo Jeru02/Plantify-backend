@@ -8,8 +8,8 @@ const seed_1 = __importDefault(require("../db/seeds/seed"));
 const plant_test_data_1 = __importDefault(require("../db/data/test-data/plant.test-data"));
 const quiz_test_data_1 = __importDefault(require("../db/data/test-data/quiz.test-data"));
 const users_test_data_1 = __importDefault(require("../db/data/test-data/users.test-data"));
-const like_plants_test_data_1 = __importDefault(require("../db/data/test-data/like_plants.test-data"));
-beforeAll(() => (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default, users_test_data_1.default, like_plants_test_data_1.default));
+const liked_plants_test_data_1 = __importDefault(require("../db/data/test-data/liked_plants.test-data"));
+beforeAll(() => (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default, users_test_data_1.default, liked_plants_test_data_1.default));
 afterAll(() => connection_1.default.end());
 describe("plants table", () => {
     test("plants table exists", () => {
@@ -101,32 +101,32 @@ describe("users table", () => {
         });
     });
 });
-describe.only("like_plants table", () => {
-    test("like_plants table exists", () => {
+describe("liked_plants table", () => {
+    test("liked_plants table exists", () => {
         return connection_1.default
             .query(`SELECT EXISTS (
             SELECT FROM
                 information_schema.tables
             WHERE
-                table_name = 'like_plants'
+                table_name = 'liked_plants'
             );`)
             .then((Result) => {
             expect(Result.rows[0].exists).toBe(true);
         });
     });
-    test("like_plants table has the column of like_plants_id which is a serial", () => {
+    test("liked_plants table has the column of liked_plants_id which is a serial", () => {
         return connection_1.default
             .query(`SELECT column_name, data_type, column_default
             FROM information_schema.columns
-            WHERE table_name = 'like_plants'
-            AND column_name = 'like_plants_id';`)
+            WHERE table_name = 'liked_plants'
+            AND column_name = 'liked_plants_id';`)
             .then((Result) => {
-            expect(Result.rows[0].column_name).toBe("like_plants_id");
+            expect(Result.rows[0].column_name).toBe("liked_plants_id");
             expect(Result.rows[0].data_type).toBe("integer");
         });
     });
-    test("like_plants data has been filled", () => {
-        return connection_1.default.query(`SELECT * FROM like_plants;`).then((Result) => {
+    test("liked_plants data has been filled", () => {
+        return connection_1.default.query(`SELECT * FROM liked_plants;`).then((Result) => {
             expect(Result.rowCount).toBe(3);
         });
     });

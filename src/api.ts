@@ -20,4 +20,13 @@ app.get("/api/currentWeather", getCurrentWeather);
 app.post("/api/plant", upload.single("image"), postImageToPlantNet);
 app.get("/api/plant_name", getPlantByImageUrl);
 app.get("/api/ourPlantMatch");
+
+//users endpoints 
+
+
+//like_plamnts
+
+
+
+
 export default app;

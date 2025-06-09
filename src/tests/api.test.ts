@@ -7,10 +7,10 @@ import { Response } from "supertest";
 import { QueryResult } from "pg";
 import QuizData from "../db/data/test-data/quiz.test-data";
 import UserData from "../db/data/test-data/users.test-data";
-import Like_plantData from "../db/data/test-data/like_plants.test-data";
+import Liked_plantData from "../db/data/test-data/liked_plants.test-data";
 
 beforeEach(() => {
-  return seed(PlantData, QuizData, UserData, Like_plantData);
+  return seed(PlantData, QuizData, UserData, Liked_plantData);
 });
 afterAll(() => {
   return db.end();
