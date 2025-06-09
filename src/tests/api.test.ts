@@ -167,41 +167,50 @@ describe("GET /api/plant_name", () => {
   });
 });
 
-
 describe("GET /api/genus/:genus", () => {
-  test.only("200 - responds with the requested plant object from the genus", () => {
+  test("200 - responds with the requested plant object from the genus", () => {
     return request(app)
       .get("/api/genus/Helianthus")
       .expect(200)
       .then((response: Response) => {
-
-          expect(response.body.plant).toEqual({
-            "plant_id": 1,
-    name: "Sunflower",
-    scientific_name: "Helianthus annuus",
-    genus: "Helianthus",
-    type: "Flower",
-    description:
-      "Sunflowers are large, bright, and cheerful annual plants known for their tall stems and striking yellow petals surrounding a seed-filled center.",
-    light_requirements: "Full Sun (6–8 hours of direct sunlight per day)",
-    watering_frequency: "2–3 times per week, depending on soil dryness",
-    soil_type: "Well-draining, loamy soil rich in organic matter",
-    bloom_season: "Summer to early fall",
-    mature_height: "1.5 to 3.5 meters (5–12 feet)",
-    growth_rate: "Fast",
-    difficulty: "Easy",
-    ideal_temperature: "21°C to 30°C (70°F to 86°F)",
-    toxicity: "Non-toxic to humans and pets",
-    img_url: "www.google.com",
-  });
+        expect(response.body.plant).toEqual({
+          plant_id: 1,
+          name: "Sunflower",
+          scientific_name: "Helianthus annuus",
+          genus: "Helianthus",
+          type: "Flower",
+          description:
+            "Sunflowers are large, bright, and cheerful annual plants known for their tall stems and striking yellow petals surrounding a seed-filled center.",
+          light_requirements: "Full Sun (6–8 hours of direct sunlight per day)",
+          watering_frequency: "2–3 times per week, depending on soil dryness",
+          soil_type: "Well-draining, loamy soil rich in organic matter",
+          bloom_season: "Summer to early fall",
+          mature_height: "1.5 to 3.5 meters (5–12 feet)",
+          growth_rate: "Fast",
+          difficulty: "Easy",
+          ideal_temperature: "21°C to 30°C (70°F to 86°F)",
+          toxicity: "Non-toxic to humans and pets",
+          img_url: "www.google.com",
+        });
       });
   });
 });
 
-xdescribe("GET /api/users", () => {
-  test("", () => {
-
-  })
+describe("GET /api/users/:user_id", () => {
+  test.only("status 200 - responds with requested user", () => {
+    return request(app)
+      .get("/api/users/1")
+      .expect(200)
+      .then((response: Response) => {
+        expect(response.body.user).toEqual({
+          user_id: 1,
+          user_name: "alex_morris",
+          email: "alex.morris@example.com",
+          password_hash: "a8f5f167f44f4964e6c998dee827110c",
+          created_at: "2025-06-06T12:34:56Z",
+        });
+      });
+  });
 });
 
 describe("GET /api/liked_plants/:user_id", () => {
@@ -239,13 +248,11 @@ describe("Post /api/liked_plants", () => {
         //assert
         .expect(201)
         .then((response: Response) => {
-          expect(response.body.liked_plant).toEqual(
-            {
-              liked_plant_id: 4,
-              user_id: 3,
-              plant_id: 1,
-            }
-          )
+          expect(response.body.liked_plant).toEqual({
+            liked_plant_id: 4,
+            user_id: 3,
+            plant_id: 1,
+          });
         })
     );
   });
@@ -265,10 +272,3 @@ describe("DELETE /api/liked_plants/:liked_plant_id", () => {
       });
   });
 });
-
-
-
-
-
-
-

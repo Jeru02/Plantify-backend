@@ -159,13 +159,13 @@ describe("GET /api/plant_name", () => {
     });
 });
 describe("GET /api/genus/:genus", () => {
-    test.only("200 - responds with the requested plant object from the genus", () => {
+    test("200 - responds with the requested plant object from the genus", () => {
         return request(api_1.default)
             .get("/api/genus/Helianthus")
             .expect(200)
             .then((response) => {
             expect(response.body.plant).toEqual({
-                "plant_id": 1,
+                plant_id: 1,
                 name: "Sunflower",
                 scientific_name: "Helianthus annuus",
                 genus: "Helianthus",
@@ -186,8 +186,7 @@ describe("GET /api/genus/:genus", () => {
     });
 });
 xdescribe("GET /api/users", () => {
-    test("", () => {
-    });
+    test("", () => { });
 });
 describe("GET /api/liked_plants/:user_id", () => {
     test("status 200 - responds with requested liked_plants by the correct user_id", () => {
