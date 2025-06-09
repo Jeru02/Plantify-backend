@@ -35,7 +35,7 @@ app.get("/api/plant_name", getPlantByImageUrl);
 app.get("/api/ourPlantMatch");
 
 //users endpoints
-//app.get("/api/users", getUsers);
+//app.get("/api/users/:user_id", getUsersByUserId);
 
 // add a get post and delete for the user journal
 
