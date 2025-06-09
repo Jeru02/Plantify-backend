@@ -5,15 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const app = express();
+const multer_1 = __importDefault(require("multer"));
 const upload = (0, multer_1.default)({ storage: multer_1.default.memoryStorage() });
 const cors = require("cors");
-const multer_1 = __importDefault(require("multer"));
+app.use(cors());
+app.use(express.json());
 const plants_controller_1 = require("./app/controllers/plants.controller");
 const quiz_controller_1 = require("./app/controllers/quiz.controller");
 const likedPlants_controller_1 = require("./app/controllers/likedPlants.controller");
 const external_api_1 = require("./external-api");
-app.use(cors());
-app.use(express.json());
 app.get("/api/plants", plants_controller_1.getPlants);
 app.get("/api/plants/:plant_id", plants_controller_1.getPlantById);
 app.get("/api/genus/:genus", plants_controller_1.getPlantByGenus);
