@@ -59,7 +59,7 @@ const seed = (
    );
 
    CREATE TABLE liked_plants(
-   liked_plants_id SERIAL PRIMARY KEY,
+   liked_plant_id SERIAL PRIMARY KEY,
    user_id INTEGER,
    plant_id INTEGER,
    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,

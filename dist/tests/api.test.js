@@ -158,7 +158,7 @@ describe("GET /api/plant_name", () => {
         });
     });
 });
-describe("GET plants by genus", () => {
+describe("GET /api/genus/:genus", () => {
     test.only("200 - responds with the requested plant object from the genus", () => {
         return request(api_1.default)
             .get("/api/genus/Helianthus")
@@ -182,6 +182,31 @@ describe("GET plants by genus", () => {
                 toxicity: "Non-toxic to humans and pets",
                 img_url: "www.google.com",
             });
+        });
+    });
+});
+xdescribe("GET /api/users", () => {
+    test("", () => {
+    });
+});
+describe("GET /api/liked_plants/:user_id", () => {
+    test.only("status 200 - responds with requested liked_plants by the correct user_id", () => {
+        return request(api_1.default)
+            .get("/api/liked_plants/1")
+            .expect(200)
+            .then((response) => {
+            expect(response.body.liked_plants).toEqual([
+                {
+                    liked_plant_id: 1,
+                    user_id: 1,
+                    plant_id: 2,
+                },
+                {
+                    liked_plant_id: 2,
+                    user_id: 1,
+                    plant_id: 5,
+                },
+            ]);
         });
     });
 });

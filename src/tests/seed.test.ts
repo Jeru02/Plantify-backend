@@ -135,16 +135,16 @@ describe("liked_plants table", () => {
       });
   });
 
-  test("liked_plants table has the column of liked_plants_id which is a serial", () => {
+  test("liked_plants table has the column of liked_plant_id which is a serial", () => {
     return db
       .query(
         `SELECT column_name, data_type, column_default
             FROM information_schema.columns
             WHERE table_name = 'liked_plants'
-            AND column_name = 'liked_plants_id';`
+            AND column_name = 'liked_plant_id';`
       )
       .then((Result: QueryResult) => {
-        expect(Result.rows[0].column_name).toBe("liked_plants_id");
+        expect(Result.rows[0].column_name).toBe("liked_plant_id");
         expect(Result.rows[0].data_type).toBe("integer");
       });
   });

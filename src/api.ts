@@ -5,6 +5,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 import { getPlants, getPlantById, getPlantByGenus } from "./app/controllers/plants.controller";
 import { getQuestionById } from "./app/controllers/quiz.controller";
+import { getLikedPlantsByUserId } from "./app/controllers/likedPlants.controller";
 import {
   getCurrentWeather,
   getFakeData,
@@ -22,10 +23,14 @@ app.get("/api/plant_name", getPlantByImageUrl);
 app.get("/api/ourPlantMatch");
 
 //users endpoints 
+//app.get("/api/users", getUsers);
 
+// add a get post and delete for the user journal
 
-//like_plamnts
-
+//liked_plamnts
+app.get("/api/liked_plants/:user_id", getLikedPlantsByUserId);
+//app.post("/api/liked_plants", postLikedPlant);
+//app.delete("/api/liked_plants/:liked_plant_id", deleteLikedPlantByLikedPlantsId);
 
 
 
