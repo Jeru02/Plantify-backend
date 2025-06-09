@@ -190,7 +190,7 @@ xdescribe("GET /api/users", () => {
     });
 });
 describe("GET /api/liked_plants/:user_id", () => {
-    test.only("status 200 - responds with requested liked_plants by the correct user_id", () => {
+    test("status 200 - responds with requested liked_plants by the correct user_id", () => {
         return request(api_1.default)
             .get("/api/liked_plants/1")
             .expect(200)
@@ -207,6 +207,39 @@ describe("GET /api/liked_plants/:user_id", () => {
                     plant_id: 5,
                 },
             ]);
+        });
+    });
+});
+describe("Post /api/liked_plants", () => {
+    test("201: responds with the newly liked plant", () => {
+        const newLike = {
+            user_id: 3,
+            plant_id: 1,
+        };
+        return (request(api_1.default)
+            .post("/api/liked_plants")
+            .send(newLike)
+            .expect(201)
+            .then((response) => {
+            expect(response.body.liked_plant).toEqual({
+                liked_plant_id: 4,
+                user_id: 3,
+                plant_id: 1,
+            });
+        }));
+    });
+});
+describe.only("DELETE /api/liked_plants/:liked_plant_id", () => {
+    test("status: 204 - delete the liked_plant with the liked_plant_id", () => {
+        return request(api_1.default)
+            .delete("/api/liked_plants/1")
+            .expect(204)
+            .then(() => {
+            return connection_1.default
+                .query(`SELECT * FROM liked_plants WHERE liked_plant_id = 1`)
+                .then((response) => {
+                expect(response.rows.length).toBe(0);
+            });
         });
     });
 });

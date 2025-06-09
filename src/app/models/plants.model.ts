@@ -12,3 +12,5 @@ export const selectPlantById = (plant_id: string): Promise<QueryResult> => {
 export const selectPlantByGenus = (genus: string): Promise<QueryResult> => {
   return db.query(`SELECT * FROM plants WHERE genus=$1`, [genus]);
 };
+
+

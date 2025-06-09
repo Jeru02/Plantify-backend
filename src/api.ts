@@ -3,9 +3,13 @@ const app = express();
 import multer from "multer";
 const upload = multer({ storage: multer.memoryStorage() }); 
 
+const cors = require("cors");
+app.use(cors());
+app.use(express.json());
+
 import { getPlants, getPlantById, getPlantByGenus } from "./app/controllers/plants.controller";
 import { getQuestionById } from "./app/controllers/quiz.controller";
-import { getLikedPlantsByUserId } from "./app/controllers/likedPlants.controller";
+import { getLikedPlantsByUserId, postLikedPlant, removeLikedPlantByLikedPlantsId } from "./app/controllers/likedPlants.controller";
 import {
   getCurrentWeather,
   getFakeData,
@@ -29,8 +33,8 @@ app.get("/api/ourPlantMatch");
 
 //liked_plamnts
 app.get("/api/liked_plants/:user_id", getLikedPlantsByUserId);
-//app.post("/api/liked_plants", postLikedPlant);
-//app.delete("/api/liked_plants/:liked_plant_id", deleteLikedPlantByLikedPlantsId);
+app.post("/api/liked_plants", postLikedPlant);
+app.delete("/api/liked_plants/:liked_plant_id", removeLikedPlantByLikedPlantsId);
 
 
 

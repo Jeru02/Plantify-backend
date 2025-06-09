@@ -7,6 +7,9 @@ const express = require("express");
 const app = express();
 const multer_1 = __importDefault(require("multer"));
 const upload = (0, multer_1.default)({ storage: multer_1.default.memoryStorage() });
+const cors = require("cors");
+app.use(cors());
+app.use(express.json());
 const plants_controller_1 = require("./app/controllers/plants.controller");
 const quiz_controller_1 = require("./app/controllers/quiz.controller");
 const likedPlants_controller_1 = require("./app/controllers/likedPlants.controller");
@@ -21,4 +24,6 @@ app.post("/api/plant", upload.single("image"), external_api_1.postImageToPlantNe
 app.get("/api/plant_name", external_api_1.getPlantByImageUrl);
 app.get("/api/ourPlantMatch");
 app.get("/api/liked_plants/:user_id", likedPlants_controller_1.getLikedPlantsByUserId);
+app.post("/api/liked_plants", likedPlants_controller_1.postLikedPlant);
+app.delete("/api/liked_plants/:liked_plant_id", likedPlants_controller_1.removeLikedPlantByLikedPlantsId);
 exports.default = app;

@@ -226,3 +226,49 @@ describe("GET /api/liked_plants/:user_id", () => {
   });
 });
 
+describe("Post /api/liked_plants", () => {
+  test("201: responds with the newly liked plant", () => {
+    const newLike = {
+      user_id: 3,
+      plant_id: 1,
+    };
+    return (
+      request(app)
+        .post("/api/liked_plants")
+        .send(newLike)
+        //assert
+        .expect(201)
+        .then((response: Response) => {
+          expect(response.body.liked_plant).toEqual(
+            {
+              liked_plant_id: 4,
+              user_id: 3,
+              plant_id: 1,
+            }
+          )
+        })
+    );
+  });
+});
+
+describe.only("DELETE /api/liked_plants/:liked_plant_id", () => {
+  test("status: 204 - delete the liked_plant with the liked_plant_id", () => {
+    return request(app)
+      .delete("/api/liked_plants/1")
+      .expect(204)
+      .then(() => {
+        return db
+          .query(`SELECT * FROM liked_plants WHERE liked_plant_id = 1`)
+          .then((response: QueryResult) => {
+            expect(response.rows.length).toBe(0);
+          });
+      });
+  });
+});
+
+
+
+
+
+
+
