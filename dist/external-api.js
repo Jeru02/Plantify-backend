@@ -43,24 +43,24 @@ const postImageToPlantNet = (req, res) => __awaiter(void 0, void 0, void 0, func
     var _a;
     const imageFile = req.file;
     if (!imageFile) {
-        res.status(400).json({ error: 'No image uploaded' });
+        res.status(400).json({ error: "No image uploaded" });
         return;
     }
     try {
         const formData = new form_data_1.default();
-        formData.append('images', imageFile.buffer, {
+        formData.append("images", imageFile.buffer, {
             filename: imageFile.originalname,
             contentType: imageFile.mimetype,
         });
-        formData.append('organs', 'leaf');
-        const plantNetResponse = yield axios_1.default.post('https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h&include-related-images=false&no-reject=true&nb-results=5&lang=en&type=kt', formData, {
+        formData.append("organs", "leaf");
+        const plantNetResponse = yield axios_1.default.post("https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h&include-related-images=false&no-reject=true&nb-results=5&lang=en&type=kt", formData, {
             headers: Object.assign({}, formData.getHeaders()),
         });
         res.status(200).json({ plantData: plantNetResponse.data.results[0] });
     }
     catch (error) {
-        console.error('PlantNet API error:', ((_a = error === null || error === void 0 ? void 0 : error.response) === null || _a === void 0 ? void 0 : _a.data) || error.message);
-        res.status(500).json({ error: 'Failed to identify plant' });
+        console.error("PlantNet API error:", ((_a = error === null || error === void 0 ? void 0 : error.response) === null || _a === void 0 ? void 0 : _a.data) || error.message);
+        res.status(500).json({ error: "Failed to identify plant" });
     }
 });
 exports.postImageToPlantNet = postImageToPlantNet;

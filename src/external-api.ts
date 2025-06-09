@@ -1,10 +1,8 @@
 import axios from "axios";
-import  multer  from "multer";
-
+import multer from "multer";
 import { QueryResult } from "pg";
 import { Request, Response } from "express";
 import FormData from "form-data";
-
 export const getFakeData = (req: Request, res: Response): void => {
   axios
     .get("https://fakestoreapi.com/products/1")
@@ -16,7 +14,6 @@ export const getFakeData = (req: Request, res: Response): void => {
       console.error(error);
     });
 };
-
 export const getCurrentWeather = (req: Request, res: Response): void => {
   axios
     .get(
@@ -32,30 +29,25 @@ export const getCurrentWeather = (req: Request, res: Response): void => {
       console.error(error);
     });
 };
-
-
-
-export const postImageToPlantNet = async (req: Request, res: Response): Promise<void> => {
-  
+export const postImageToPlantNet = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const imageFile = req.file;
-
   if (!imageFile) {
-    res.status(400).json({ error: 'No image uploaded' });
+    res.status(400).json({ error: "No image uploaded" });
     return;
   }
   try {
     const formData = new FormData();
-    formData.append('images', imageFile.buffer, {
+    formData.append("images", imageFile.buffer, {
       filename: imageFile.originalname,
       contentType: imageFile.mimetype,
     });
-    formData.append('organs', 'leaf'); // You can make this dynamic or user-selected
-    
-    
-    
+    formData.append("organs", "leaf"); // You can make this dynamic or user-selected
     // formData.append('api-key', '2b10iTe1G5xU8fnT08By99h');
     const plantNetResponse = await axios.post(
-      'https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h&include-related-images=false&no-reject=true&nb-results=5&lang=en&type=kt',
+      "https://my-api.plantnet.org/v2/identify/all?api-key=2b10iTe1G5xU8fnT08By99h&include-related-images=false&no-reject=true&nb-results=5&lang=en&type=kt",
       formData,
       {
         headers: {
@@ -65,18 +57,16 @@ export const postImageToPlantNet = async (req: Request, res: Response): Promise<
     );
     res.status(200).json({ plantData: plantNetResponse.data.results[0] });
   } catch (error: any) {
-    console.error('PlantNet API error:', error?.response?.data || error.message);
-    res.status(500).json({ error: 'Failed to identify plant' });
+    console.error(
+      "PlantNet API error:",
+      error?.response?.data || error.message
+    );
+    res.status(500).json({ error: "Failed to identify plant" });
   }
-
 };
-
 export const getPlantByImageUrl = (req: Request, res: Response): void => {
   // ?formData = frontend data
-
   const image = req.query.img_url;
-
- 
   axios
     .get("https://my-api.plantnet.org/v2/identify/all", {
       params: {
@@ -98,7 +88,6 @@ export const getPlantByImageUrl = (req: Request, res: Response): void => {
           scientificName: singleResult.species.scientificName,
         };
       });
-
       res.status(200).send({ plantData: response.data.results });
     })
     .catch((error) => {

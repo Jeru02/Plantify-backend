@@ -7,7 +7,9 @@ const connection_1 = __importDefault(require("../db/connection"));
 const seed_1 = __importDefault(require("../db/seeds/seed"));
 const plant_test_data_1 = __importDefault(require("../db/data/test-data/plant.test-data"));
 const quiz_test_data_1 = __importDefault(require("../db/data/test-data/quiz.test-data"));
-beforeAll(() => (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default));
+const users_test_data_1 = __importDefault(require("../db/data/test-data/users.test-data"));
+const like_plants_test_data_1 = __importDefault(require("../db/data/test-data/like_plants.test-data"));
+beforeAll(() => (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default, users_test_data_1.default, like_plants_test_data_1.default));
 afterAll(() => connection_1.default.end());
 describe("plants table", () => {
     test("plants table exists", () => {
@@ -66,6 +68,66 @@ describe("quiz form", () => {
     test("quiz data has been filled", () => {
         return connection_1.default.query(`SELECT * FROM quiz;`).then((Result) => {
             expect(Result.rowCount).toBe(10);
+        });
+    });
+});
+describe("users table", () => {
+    test("users table exists", () => {
+        return connection_1.default
+            .query(`SELECT EXISTS (
+            SELECT FROM
+                information_schema.tables
+            WHERE
+                table_name = 'users'
+            );`)
+            .then((Result) => {
+            expect(Result.rows[0].exists).toBe(true);
+        });
+    });
+    test("users table has the column of user_id which is a serial number", () => {
+        return connection_1.default
+            .query(`SELECT column_name, data_type, column_default
+            FROM information_schema.columns
+            WHERE table_name = 'users'
+            AND column_name = 'user_id';`)
+            .then((Result) => {
+            expect(Result.rows[0].column_name).toBe("user_id");
+            expect(Result.rows[0].data_type).toBe("integer");
+        });
+    });
+    test("user data has been filled", () => {
+        return connection_1.default.query(`SELECT * FROM users;`).then((Result) => {
+            expect(Result.rowCount).toBe(10);
+        });
+    });
+});
+describe.only("like_plants table", () => {
+    test("like_plants table exists", () => {
+        return connection_1.default
+            .query(`SELECT EXISTS (
+            SELECT FROM
+                information_schema.tables
+            WHERE
+                table_name = 'like_plants'
+            );`)
+            .then((Result) => {
+            expect(Result.rows[0].exists).toBe(true);
+        });
+    });
+    test("like_plants table has the column of like_plants_id which is a serial", () => {
+        return connection_1.default
+            .query(`SELECT column_name, data_type, column_default
+            FROM information_schema.columns
+            WHERE table_name = 'like_plants'
+            AND column_name = 'like_plants_id';`)
+            .then((Result) => {
+            expect(Result.rows[0].column_name).toBe("like_plants_id");
+            expect(Result.rows[0].data_type).toBe("integer");
+        });
+    });
+    test("like_plants data has been filled", () => {
+        return connection_1.default.query(`SELECT * FROM like_plants;`).then((Result) => {
+            expect(Result.rowCount).toBe(3);
         });
     });
 });

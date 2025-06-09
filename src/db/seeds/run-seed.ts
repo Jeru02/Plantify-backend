@@ -6,8 +6,12 @@ import QuizData from "../data/development-data/quiz.development-data";
 
 import db from "../connection";
 
+import UserData from "../data/test-data/users.test-data";
+
+import Like_plantData from "../data/test-data/like_plants.test-data";
+
 const runSeed = (): Promise<any> => {
-  return seed(PlantData, QuizData).then(() => db.end());
+  return seed(PlantData, QuizData, UserData, Like_plantData).then(() => db.end());
 };
 
 runSeed();

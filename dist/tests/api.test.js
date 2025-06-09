@@ -9,8 +9,10 @@ const connection_1 = __importDefault(require("../db/connection"));
 const seed_1 = __importDefault(require("../db/seeds/seed"));
 const plant_test_data_1 = __importDefault(require("../db/data/test-data/plant.test-data"));
 const quiz_test_data_1 = __importDefault(require("../db/data/test-data/quiz.test-data"));
+const users_test_data_1 = __importDefault(require("../db/data/test-data/users.test-data"));
+const like_plants_test_data_1 = __importDefault(require("../db/data/test-data/like_plants.test-data"));
 beforeEach(() => {
-    return (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default);
+    return (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default, users_test_data_1.default, like_plants_test_data_1.default);
 });
 afterAll(() => {
     return connection_1.default.end();

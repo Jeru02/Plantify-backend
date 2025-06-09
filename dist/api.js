@@ -18,4 +18,5 @@ app.get("/api/fakeData", external_api_1.getFakeData);
 app.get("/api/currentWeather", external_api_1.getCurrentWeather);
 app.post("/api/plant", upload.single("image"), external_api_1.postImageToPlantNet);
 app.get("/api/plant_name", external_api_1.getPlantByImageUrl);
+app.get("/api/ourPlantMatch");
 exports.default = app;
