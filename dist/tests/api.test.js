@@ -257,7 +257,7 @@ describe("DELETE /api/liked_plants/:liked_plant_id", () => {
     });
 });
 describe(" GET /api/users/:user_name", () => {
-    test.only("status: 200 - return user by specified user_name", () => {
+    test("status: 200 - return user by specified user_name", () => {
         return request(api_1.default)
             .get("/api/users/guest")
             .expect(200)
@@ -267,6 +267,58 @@ describe(" GET /api/users/:user_name", () => {
                 user_name: "guest",
                 email: "guest@example.com",
                 password_hash: "a8f5f167f44f4964e6c998dee827110c",
+            });
+        });
+    });
+});
+describe.only("GET api/journals/:user_id", () => {
+    test("status 200 - responds with all users journal entries", () => {
+        return request(api_1.default)
+            .get("/api/journals/1")
+            .expect(200)
+            .then((response) => {
+            expect(response.body.journalEntries).toEqual([
+                {
+                    journal_entry_id: 1,
+                    user_id: 1,
+                    body: "Planted lavender and basil in the herb bed today. Added compost and watered thoroughly.",
+                    created_at: "2025-06-05T08:45:00Z",
+                },
+            ]);
+        });
+    });
+});
+describe.only("Post /api/journals", () => {
+    test("201: responds with the newly posted journal entry", () => {
+        const newJournalEntry = {
+            user_id: 2,
+            body: "Planted sunflower and basil in the herb bed today. Added compost and watered thoroughly.",
+            created_at: "2025-06-05T08:45:00Z",
+        };
+        return (request(api_1.default)
+            .post("/api/journals")
+            .send(newJournalEntry)
+            .expect(201)
+            .then((response) => {
+            expect(response.body.journalEntry).toEqual({
+                journal_entry_id: 6,
+                user_id: 2,
+                body: "Planted sunflower and basil in the herb bed today. Added compost and watered thoroughly.",
+                created_at: "2025-06-05T08:45:00Z",
+            });
+        }));
+    });
+});
+describe.only("DELETE /api/journals`/:journal_entry_id", () => {
+    test("status: 204 - delete the journal entry with the journal entry id", () => {
+        return request(api_1.default)
+            .delete("/api/journals/1")
+            .expect(204)
+            .then(() => {
+            return connection_1.default
+                .query(`SELECT * FROM journal WHERE journal_entry_id = 1`)
+                .then((response) => {
+                expect(response.rows.length).toBe(0);
             });
         });
     });

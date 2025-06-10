@@ -281,13 +281,78 @@ describe(" GET /api/users/:user_name", () => {
       .expect(200)
       .then((response: Response) => {
         expect(response.body.user).toMatchObject({
-    user_id:1,
-    user_name: "guest",
-    email: "guest@example.com",
-    password_hash: "a8f5f167f44f4964e6c998dee827110c",
-    
-  })
+          user_id: 1,
+          user_name: "guest",
+          email: "guest@example.com",
+          password_hash: "a8f5f167f44f4964e6c998dee827110c",
+        });
+      });
+  });
+});
+//
+//
+//
+//
+//
+//
+//
+//
+
+//
+describe.only("GET api/journals/:user_id", () => {
+  test("status 200 - responds with all users journal entries", () => {
+    return request(app)
+      .get("/api/journals/1")
+      .expect(200)
+      .then((response: Response) => {
+        expect(response.body.journalEntries).toEqual([
+          {
+            journal_entry_id: 1,
+            user_id: 1,
+            body: "Planted lavender and basil in the herb bed today. Added compost and watered thoroughly.",
+            created_at: "2025-06-05T08:45:00Z",
+          },
+        ]);
       });
   });
 });
 
+describe.only("Post /api/journals", () => {
+  test("201: responds with the newly posted journal entry", () => {
+    const newJournalEntry = {
+      user_id: 2,
+      body: "Planted sunflower and basil in the herb bed today. Added compost and watered thoroughly.",
+      created_at: "2025-06-05T08:45:00Z",
+    };
+    return (
+      request(app)
+        .post("/api/journals")
+        .send(newJournalEntry)
+        //assert
+        .expect(201)
+        .then((response: Response) => {
+          expect(response.body.journalEntry).toEqual({
+            journal_entry_id: 6,
+            user_id: 2,
+            body: "Planted sunflower and basil in the herb bed today. Added compost and watered thoroughly.",
+            created_at: "2025-06-05T08:45:00Z",
+          });
+        })
+    );
+  });
+});
+
+describe.only("DELETE /api/journals`/:journal_entry_id", () => {
+  test("status: 204 - delete the journal entry with the journal entry id", () => {
+    return request(app)
+      .delete("/api/journals/1")
+      .expect(204)
+      .then(() => {
+        return db
+          .query(`SELECT * FROM journal WHERE journal_entry_id = 1`)
+          .then((response: QueryResult) => {
+            expect(response.rows.length).toBe(0);
+          });
+      });
+  });
+});

@@ -39,6 +39,13 @@ app.get("/api/ourPlantMatch");
 //users endpoints
 app.get("/api/users/:user_name", getUserByUserName);
 
+// app.get("api/journals/:user_id", getJournalEntriesByUserId);
+// app.post("/api/journals", postJournalEntry);
+// app.delete(
+//   "/api/journals/:journal_entry_id",
+//   removeJournalEntryByJournalEntryId
+// );
+
 // add a get post and delete for the user journal
 
 //liked_plants

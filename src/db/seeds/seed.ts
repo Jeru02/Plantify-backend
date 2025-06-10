@@ -73,7 +73,8 @@ const seed = (
      journal_entry_id SERIAL PRIMARY KEY,
      user_id INTEGER,
      body TEXT,
-     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
     )
     `);
     })
