@@ -295,7 +295,7 @@ describe("GET api/journals/:user_id", () => {
     });
 });
 describe("Post /api/journals", () => {
-    test.only("201: responds with the newly posted journal entry", () => {
+    test("201: responds with the newly posted journal entry", () => {
         const newJournalEntry = {
             user_id: 2,
             body: "Planted sunflower and basil in the herb bed today. Added compost and watered thoroughly.",
@@ -315,7 +315,7 @@ describe("Post /api/journals", () => {
     });
 });
 describe("DELETE /api/journals`/:journal_entry_id", () => {
-    test("status: 204 - delete the journal entry with the journal entry id", () => {
+    test.only("status: 204 - delete the journal entry with the journal entry id", () => {
         return request(api_1.default)
             .delete("/api/journals/1")
             .expect(204)

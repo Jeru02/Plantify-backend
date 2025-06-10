@@ -6,6 +6,8 @@ Welcome to the Plantify API! This RESTful API provides data on various plants, t
 
 ## Endpoints Overview
 
+GET REQUESTS
+
 ### GET /api/plants
 
 **Description:** Returns an array of all plants.
@@ -135,17 +137,9 @@ icon: //cdn.weatherapi.com/weather/64x64/day/116.png
 uv: 6
 }
 
-### POST /api/plant
-
-**Description:** Creates a new plant.
-
-!!!!!!!_(No example response provided yet)_
-
----
-
 ### GET /api/plant_name
 
-**Description:** Returns the plant name based on an identification process.
+**Description:** Returns the plant name based on an image URL.
 
 **Example Response:**
 
@@ -167,6 +161,57 @@ powo: https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:12345-1,
 iucn: https://www.iucnredlist.org/species/123456/7891011
 }
 
+### GET /api/ourPlantMatch
+
+**Description:** Returns a match in our database based on genus.
+
+**Queries:** genus = Lavandula
+
+**Example Response:**
+
+{
+name: "Lavender",
+scientific_name: "Lavandula angustifolia",
+genus: "Lavandula",
+type: "Herb",
+description: "Grey-green foliage with tall spikes of small purple flowers and a strong scent.",
+light_requirements: "Full sun",
+watering_frequency: "Every 1–2 weeks",
+soil_type: "Sandy, well-drained",
+bloom_season: "Summer",
+mature_height: "60–90 cm",
+growth_rate: "Moderate",
+difficulty: "Easy",
+ideal_temperature: "15–30°C",
+toxicity: "Non-toxic",
+img_url: "https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Lavender.jpg",
+}
+
+### GET /api/users/:user_name
+
+**Description:** Returns a user
+
+**Example Response:**
+
+{
+user_name: "jane_lee",
+email: "jane.lee@example.com",
+password_hash: "d8578edf8458ce06fbc5bb76a58c5ca4",
+created_at: "2025-06-06T12:35:23Z",
+}
+
+### GET /api/journals/:user_id
+
+**Description:** Returns a list of journal entries of a user.
+
+**Example Response:**
+
+{
+user_id: 3,
+body: "Repotted my peace lily into a bigger container. Used a richer potting mix this time.",
+created_at: "2025-06-07T15:30:00Z",
+}
+
 ### GET /api/liked_plants/:user_id
 
 **Description:** Returns liked plants for a given `user_id`.
@@ -186,6 +231,43 @@ plant_id: 5
 }
 ]
 
+POST REQUESTS
+
+### POST /api/plant
+
+**Description:** Returns the plant name based on an live photo.
+
+**Example Response:**
+
+{
+score: 92.5,
+species:
+{
+scientificName: Ficus lyrata,
+commonName: Fiddle Leaf Fig,
+family: Moraceae
+},
+images:
+[
+https://example.com/images/ficus1.jpg,
+https://example.com/images/ficus2.jpg
+],
+gbif: https://www.gbif.org/species/1234567,
+powo: https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:12345-1,
+iucn: https://www.iucnredlist.org/species/123456/7891011
+}
+
+### POST /api/journals
+
+**Description:** Adds a journal entry.
+
+**Example Post:**
+
+{
+user_id: 2,
+body: "Set up a watering schedule for the tomato plants—every Monday, Wednesday, and Saturday."
+}
+
 ### POST /api/liked_plants
 
 **Description:** Adds a plant to the user's liked plants.
@@ -199,6 +281,12 @@ user_id: 3,
 plant_id: 1
 }
 
+DELETE REQUESTS
+
 ### DELETE /api/liked_plants/:liked_plant_id
 
 **Description:** Deletes a liked plant by `liked_plant_id`.
+
+### DELETE /api/journals/:journal_entry_id
+
+**Description:** Deletes a journal entry based on the journal entries id.

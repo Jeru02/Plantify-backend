@@ -28,6 +28,7 @@ app.get("/api/ourPlantMatch");
 app.get("/api/users/:user_name", users_controller_1.getUserByUserName);
 app.get("/api/journals/:user_id", journals_controller_1.getJournalEntriesByUserId);
 app.post("/api/journals", journals_controller_1.postJournalEntry);
+app.delete("/api/journals/:journal_entry_id", journals_controller_1.removeJournalEntryByJournalEntryId);
 app.get("/api/liked_plants/:user_id", likedPlants_controller_1.getLikedPlantsByUserId);
 app.post("/api/liked_plants", likedPlants_controller_1.postLikedPlant);
 app.delete("/api/liked_plants/:liked_plant_id", likedPlants_controller_1.removeLikedPlantByLikedPlantsId);

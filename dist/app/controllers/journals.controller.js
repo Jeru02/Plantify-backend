@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postJournalEntry = exports.getJournalEntriesByUserId = void 0;
+exports.removeJournalEntryByJournalEntryId = exports.postJournalEntry = exports.getJournalEntriesByUserId = void 0;
 const journals_model_1 = require("../models/journals.model");
 const getJournalEntriesByUserId = (req, res) => {
     const { user_id } = req.params;
@@ -15,3 +15,10 @@ const postJournalEntry = (req, res) => {
     });
 };
 exports.postJournalEntry = postJournalEntry;
+const removeJournalEntryByJournalEntryId = (req, res) => {
+    const { journal_entry_id } = req.params;
+    (0, journals_model_1.deleteJournalEntry)(journal_entry_id).then(() => {
+        res.status(204).send();
+    });
+};
+exports.removeJournalEntryByJournalEntryId = removeJournalEntryByJournalEntryId;
