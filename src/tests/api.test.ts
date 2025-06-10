@@ -289,16 +289,7 @@ describe(" GET /api/users/:user_name", () => {
       });
   });
 });
-//
-//
-//
-//
-//
-//
-//
-//
 
-//
 describe("GET api/journals/:user_id", () => {
   test("status 200 - responds with all users journal entries", () => {
     return request(app)
@@ -333,7 +324,6 @@ describe("Post /api/journals", () => {
       request(app)
         .post("/api/journals")
         .send(newJournalEntry)
-        //assert
         .expect(201)
         .then((response: Response) => {
           expect(response.body.journalEntry).toMatchObject({
@@ -348,7 +338,7 @@ describe("Post /api/journals", () => {
 });
 
 describe("DELETE /api/journals`/:journal_entry_id", () => {
-  test.only("status: 204 - delete the journal entry with the journal entry id", () => {
+  test("status: 204 - delete the journal entry with the journal entry id", () => {
     return request(app)
       .delete("/api/journals/1")
       .expect(204)

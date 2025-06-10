@@ -315,7 +315,7 @@ describe("Post /api/journals", () => {
     });
 });
 describe("DELETE /api/journals`/:journal_entry_id", () => {
-    test.only("status: 204 - delete the journal entry with the journal entry id", () => {
+    test("status: 204 - delete the journal entry with the journal entry id", () => {
         return request(api_1.default)
             .delete("/api/journals/1")
             .expect(204)
