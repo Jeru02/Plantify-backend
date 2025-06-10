@@ -4,7 +4,7 @@ Welcome to the Plantify API! This RESTful API provides data on various plants, t
 
 ---
 
-## Endpoints Overview
+# Endpoints Overview
 
 # GET REQUESTS
 
