@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../connection"));
 const pg_format_1 = __importDefault(require("pg-format"));
-const seed = (plantArray, quizArray, userArray, liked_plantArray) => {
+const seed = (plantArray, quizArray, userArray, liked_plantArray, journalArray) => {
     return connection_1.default
         .query(`
-      
+      DROP TABLE IF EXISTS journal;
        DROP TABLE IF EXISTS liked_plants;
        DROP TABLE IF EXISTS users;
        DROP TABLE IF EXISTS plants;
@@ -57,7 +57,14 @@ const seed = (plantArray, quizArray, userArray, liked_plantArray) => {
    plant_id INTEGER,
    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
    FOREIGN KEY (plant_id) REFERENCES plants(plant_id) ON DELETE CASCADE
-   )
+   );
+
+   CREATE TABLE journal(
+     journal_entry_id SERIAL PRIMARY KEY,
+     user_id INTEGER,
+     body TEXT,
+     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    )
     `);
     })
         .then(() => {
@@ -129,10 +136,7 @@ const seed = (plantArray, quizArray, userArray, liked_plantArray) => {
     })
         .then(() => {
         const formattedLiked_plantData = liked_plantArray.map((liked_plant) => {
-            return [
-                liked_plant.user_id,
-                liked_plant.plant_id
-            ];
+            return [liked_plant.user_id, liked_plant.plant_id];
         });
         const insertLiked_plantQuery = (0, pg_format_1.default)(`INSERT INTO liked_plants(
         user_id,
@@ -141,6 +145,19 @@ const seed = (plantArray, quizArray, userArray, liked_plantArray) => {
         VALUES %L RETURNING *;
         `, formattedLiked_plantData);
         return connection_1.default.query(insertLiked_plantQuery).then((Result) => { });
+    })
+        .then(() => {
+        const formattedJournalData = journalArray.map((journal) => {
+            return [journal.user_id, journal.body, journal.created_at];
+        });
+        const insertJournalQuery = (0, pg_format_1.default)(`INSERT INTO journal(
+        user_id,
+        body,
+        created_at
+        )
+        VALUES %L RETURNING *;
+        `, formattedJournalData);
+        return connection_1.default.query(insertJournalQuery).then((Result) => { });
     });
 };
 exports.default = seed;

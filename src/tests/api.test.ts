@@ -8,9 +8,10 @@ import { QueryResult } from "pg";
 import QuizData from "../db/data/test-data/quiz.test-data";
 import UserData from "../db/data/test-data/users.test-data";
 import Liked_plantData from "../db/data/test-data/liked_plants.test-data";
+import JournalEntryData from "../db/data/test-data/journal.test-data";
 
 beforeEach(() => {
-  return seed(PlantData, QuizData, UserData, Liked_plantData);
+  return seed(PlantData, QuizData, UserData, Liked_plantData, JournalEntryData);
 });
 afterAll(() => {
   return db.end();
@@ -148,7 +149,7 @@ describe("GET /api/currentWeather", () => {
 });
 
 describe("GET /api/plant_name", () => {
-  xtest("200 - responds with the correct plant name", () => {
+  test("200 - responds with the correct plant name", () => {
     return request(app)
       .get(
         "/api/plant_name?img_url=https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Sunflower.jpg"

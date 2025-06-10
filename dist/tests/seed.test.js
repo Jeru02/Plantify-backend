@@ -9,7 +9,8 @@ const plant_test_data_1 = __importDefault(require("../db/data/test-data/plant.te
 const quiz_test_data_1 = __importDefault(require("../db/data/test-data/quiz.test-data"));
 const users_test_data_1 = __importDefault(require("../db/data/test-data/users.test-data"));
 const liked_plants_test_data_1 = __importDefault(require("../db/data/test-data/liked_plants.test-data"));
-beforeAll(() => (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default, users_test_data_1.default, liked_plants_test_data_1.default));
+const journal_test_data_1 = __importDefault(require("../db/data/test-data/journal.test-data"));
+beforeAll(() => (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default, users_test_data_1.default, liked_plants_test_data_1.default, journal_test_data_1.default));
 afterAll(() => connection_1.default.end());
 describe("plants table", () => {
     test("plants table exists", () => {
@@ -126,8 +127,40 @@ describe("liked_plants table", () => {
         });
     });
     test("liked_plants data has been filled", () => {
-        return connection_1.default.query(`SELECT * FROM liked_plants;`).then((Result) => {
+        return connection_1.default
+            .query(`SELECT * FROM liked_plants;`)
+            .then((Result) => {
             expect(Result.rowCount).toBe(3);
+        });
+    });
+});
+describe("journal table", () => {
+    test("journal table exists", () => {
+        return connection_1.default
+            .query(`SELECT EXISTS (
+            SELECT FROM
+                information_schema.tables
+            WHERE
+                table_name = 'journal'
+            );`)
+            .then((Result) => {
+            expect(Result.rows[0].exists).toBe(true);
+        });
+    });
+    test("journal table has the column of journal_entry_id which is a serial", () => {
+        return connection_1.default
+            .query(`SELECT column_name, data_type, column_default
+            FROM information_schema.columns
+            WHERE table_name = 'journal'
+            AND column_name = 'journal_entry_id';`)
+            .then((Result) => {
+            expect(Result.rows[0].column_name).toBe("journal_entry_id");
+            expect(Result.rows[0].data_type).toBe("integer");
+        });
+    });
+    test("journal data has been filled", () => {
+        return connection_1.default.query(`SELECT * FROM journal;`).then((Result) => {
+            expect(Result.rowCount).toBe(5);
         });
     });
 });

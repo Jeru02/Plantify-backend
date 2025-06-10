@@ -40,7 +40,7 @@ app.get("/api/ourPlantMatch");
 
 // add a get post and delete for the user journal
 
-//liked_plamnts
+//liked_plants
 app.get("/api/liked_plants/:user_id", getLikedPlantsByUserId);
 app.post("/api/liked_plants", postLikedPlant);
 app.delete(

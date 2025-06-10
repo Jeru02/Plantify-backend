@@ -8,10 +8,18 @@ import db from "../connection";
 
 import UserData from "../data/development-data/users.development-data";
 
-import Liked_plantData from "../data/test-data/liked_plants.test-data";
+import Liked_plantData from "../data/development-data/liked_plants.development-data";
+
+import JournalEntryData from "../data/development-data/journal.development-data";
 
 const runSeed = (): Promise<any> => {
-  return seed(PlantData, QuizData, UserData, Liked_plantData).then(() => db.end());
+  return seed(
+    PlantData,
+    QuizData,
+    UserData,
+    Liked_plantData,
+    JournalEntryData
+  ).then(() => db.end());
 };
 
 runSeed();

@@ -6,8 +6,11 @@ import { QueryResult } from "pg";
 import { Plant } from "../db/data/test-data/plant.test-data";
 import UserData from "../db/data/test-data/users.test-data";
 import Liked_plantData from "../db/data/test-data/liked_plants.test-data";
+import JournalEntryData from "../db/data/test-data/journal.test-data";
 
-beforeAll(() => seed(PlantData, QuizData, UserData, Liked_plantData));
+beforeAll(() =>
+  seed(PlantData, QuizData, UserData, Liked_plantData, JournalEntryData)
+);
 afterAll(() => db.end());
 
 describe("plants table", () => {
@@ -150,8 +153,47 @@ describe("liked_plants table", () => {
   });
 
   test("liked_plants data has been filled", () => {
-    return db.query(`SELECT * FROM liked_plants;`).then((Result: QueryResult) => {
-      expect(Result.rowCount).toBe(3);
+    return db
+      .query(`SELECT * FROM liked_plants;`)
+      .then((Result: QueryResult) => {
+        expect(Result.rowCount).toBe(3);
+      });
+  });
+});
+
+describe("journal table", () => {
+  test("journal table exists", () => {
+    return db
+      .query(
+        `SELECT EXISTS (
+            SELECT FROM
+                information_schema.tables
+            WHERE
+                table_name = 'journal'
+            );`
+      )
+      .then((Result: QueryResult) => {
+        expect(Result.rows[0].exists).toBe(true);
+      });
+  });
+
+  test("journal table has the column of journal_entry_id which is a serial", () => {
+    return db
+      .query(
+        `SELECT column_name, data_type, column_default
+            FROM information_schema.columns
+            WHERE table_name = 'journal'
+            AND column_name = 'journal_entry_id';`
+      )
+      .then((Result: QueryResult) => {
+        expect(Result.rows[0].column_name).toBe("journal_entry_id");
+        expect(Result.rows[0].data_type).toBe("integer");
+      });
+  });
+
+  test("journal data has been filled", () => {
+    return db.query(`SELECT * FROM journal;`).then((Result: QueryResult) => {
+      expect(Result.rowCount).toBe(5);
     });
   });
 });

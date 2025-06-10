@@ -4,17 +4,20 @@ import { Quiz } from "../data/test-data/quiz.test-data";
 import { User } from "../data/test-data/users.test-data";
 import { Liked_plant } from "../data/test-data/liked_plants.test-data";
 import format from "pg-format";
+import { Result } from "pg";
+import { JournalEntry } from "../data/test-data/journal.test-data";
 
 const seed = (
   plantArray: Plant[],
   quizArray: Quiz[],
   userArray: User[],
-  liked_plantArray: Liked_plant[]
+  liked_plantArray: Liked_plant[],
+  journalArray: JournalEntry[]
 ): Promise<any> => {
   return db
     .query(
       `
-      
+      DROP TABLE IF EXISTS journal;
        DROP TABLE IF EXISTS liked_plants;
        DROP TABLE IF EXISTS users;
        DROP TABLE IF EXISTS plants;
@@ -64,7 +67,14 @@ const seed = (
    plant_id INTEGER,
    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
    FOREIGN KEY (plant_id) REFERENCES plants(plant_id) ON DELETE CASCADE
-   )
+   );
+
+   CREATE TABLE journal(
+     journal_entry_id SERIAL PRIMARY KEY,
+     user_id INTEGER,
+     body TEXT,
+     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    )
     `);
     })
     .then(() => {
@@ -151,12 +161,11 @@ const seed = (
       return db.query(insertUserQuery).then((Result: any) => {});
     })
     .then(() => {
-      const formattedLiked_plantData: Array<number[]> = liked_plantArray.map((liked_plant: Liked_plant) => {
-        return [
-          liked_plant.user_id,
-          liked_plant.plant_id
-        ]
-      });
+      const formattedLiked_plantData: Array<number[]> = liked_plantArray.map(
+        (liked_plant: Liked_plant) => {
+          return [liked_plant.user_id, liked_plant.plant_id];
+        }
+      );
       const insertLiked_plantQuery: string = format(
         `INSERT INTO liked_plants(
         user_id,
@@ -166,8 +175,26 @@ const seed = (
         `,
         formattedLiked_plantData
       );
-      return db.query(insertLiked_plantQuery).then((Result: any) => { });
+      return db.query(insertLiked_plantQuery).then((Result: any) => {});
     })
+    .then(() => {
+      const formattedJournalData: Array<(number | string)[]> = journalArray.map(
+        (journal: JournalEntry) => {
+          return [journal.user_id, journal.body, journal.created_at];
+        }
+      );
+      const insertJournalQuery: string = format(
+        `INSERT INTO journal(
+        user_id,
+        body,
+        created_at
+        )
+        VALUES %L RETURNING *;
+        `,
+        formattedJournalData
+      );
+      return db.query(insertJournalQuery).then((Result: any) => {});
+    });
 };
 
 export default seed;

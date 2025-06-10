@@ -11,8 +11,9 @@ const plant_test_data_1 = __importDefault(require("../db/data/test-data/plant.te
 const quiz_test_data_1 = __importDefault(require("../db/data/test-data/quiz.test-data"));
 const users_test_data_1 = __importDefault(require("../db/data/test-data/users.test-data"));
 const liked_plants_test_data_1 = __importDefault(require("../db/data/test-data/liked_plants.test-data"));
+const journal_test_data_1 = __importDefault(require("../db/data/test-data/journal.test-data"));
 beforeEach(() => {
-    return (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default, users_test_data_1.default, liked_plants_test_data_1.default);
+    return (0, seed_1.default)(plant_test_data_1.default, quiz_test_data_1.default, users_test_data_1.default, liked_plants_test_data_1.default, journal_test_data_1.default);
 });
 afterAll(() => {
     return connection_1.default.end();
@@ -142,7 +143,7 @@ describe("GET /api/currentWeather", () => {
     });
 });
 describe("GET /api/plant_name", () => {
-    xtest("200 - responds with the correct plant name", () => {
+    test("200 - responds with the correct plant name", () => {
         return request(api_1.default)
             .get("/api/plant_name?img_url=https://agrrakoqlneqtjnvccxc.supabase.co/storage/v1/object/public/plant-pic//Sunflower.jpg")
             .expect(200)
