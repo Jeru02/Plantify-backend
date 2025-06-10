@@ -6,7 +6,7 @@ Welcome to the Plantify API! This RESTful API provides data on various plants, t
 
 ## Endpoints Overview
 
-GET REQUESTS
+# GET REQUESTS
 
 ### GET /api/plants
 
@@ -231,7 +231,7 @@ plant_id: 5
 }
 ]
 
-POST REQUESTS
+# POST REQUESTS
 
 ### POST /api/plant
 
@@ -281,7 +281,7 @@ user_id: 3,
 plant_id: 1
 }
 
-DELETE REQUESTS
+# DELETE REQUESTS
 
 ### DELETE /api/liked_plants/:liked_plant_id
 
