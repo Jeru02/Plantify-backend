@@ -7,8 +7,8 @@ export interface User {
 
 const UserData: Array<User> = [
   {
-    user_name: "alex_morris",
-    email: "alex.morris@example.com",
+    user_name: "guest",
+    email: "guest@example.com",
     password_hash: "a8f5f167f44f4964e6c998dee827110c",
     created_at: "2025-06-06T12:34:56Z",
   },

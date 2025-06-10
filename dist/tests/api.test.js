@@ -256,3 +256,18 @@ describe("DELETE /api/liked_plants/:liked_plant_id", () => {
         });
     });
 });
+describe(" GET /api/users/:user_name", () => {
+    test.only("status: 200 - return user by specified user_name", () => {
+        return request(api_1.default)
+            .get("/api/users/guest")
+            .expect(200)
+            .then((response) => {
+            expect(response.body.user).toMatchObject({
+                user_id: 1,
+                user_name: "guest",
+                email: "guest@example.com",
+                password_hash: "a8f5f167f44f4964e6c998dee827110c",
+            });
+        });
+    });
+});
