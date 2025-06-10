@@ -15,6 +15,7 @@ const quiz_controller_1 = require("./app/controllers/quiz.controller");
 const likedPlants_controller_1 = require("./app/controllers/likedPlants.controller");
 const external_api_1 = require("./external-api");
 const users_controller_1 = require("./app/controllers/users.controller");
+const journals_controller_1 = require("./app/controllers/journals.controller");
 app.get("/api/plants", plants_controller_1.getPlants);
 app.get("/api/plants/:plant_id", plants_controller_1.getPlantById);
 app.get("/api/genus/:genus", plants_controller_1.getPlantByGenus);
@@ -25,6 +26,8 @@ app.post("/api/plant", upload.single("image"), external_api_1.postImageToPlantNe
 app.get("/api/plant_name", external_api_1.getPlantByImageUrl);
 app.get("/api/ourPlantMatch");
 app.get("/api/users/:user_name", users_controller_1.getUserByUserName);
+app.get("/api/journals/:user_id", journals_controller_1.getJournalEntriesByUserId);
+app.post("/api/journals", journals_controller_1.postJournalEntry);
 app.get("/api/liked_plants/:user_id", likedPlants_controller_1.getLikedPlantsByUserId);
 app.post("/api/liked_plants", likedPlants_controller_1.postLikedPlant);
 app.delete("/api/liked_plants/:liked_plant_id", likedPlants_controller_1.removeLikedPlantByLikedPlantsId);

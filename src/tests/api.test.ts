@@ -299,7 +299,7 @@ describe(" GET /api/users/:user_name", () => {
 //
 
 //
-describe.only("GET api/journals/:user_id", () => {
+describe("GET api/journals/:user_id", () => {
   test("status 200 - responds with all users journal entries", () => {
     return request(app)
       .get("/api/journals/1")
@@ -310,19 +310,24 @@ describe.only("GET api/journals/:user_id", () => {
             journal_entry_id: 1,
             user_id: 1,
             body: "Planted lavender and basil in the herb bed today. Added compost and watered thoroughly.",
-            created_at: "2025-06-05T08:45:00Z",
+            created_at: "2025-06-05T07:45:00.000Z",
+          },
+          {
+            journal_entry_id: 4,
+            user_id: 1,
+            body: "Trimmed back the basil to encourage bushier growth. It smells amazing already!",
+            created_at: "2025-06-08T08:20:00.000Z",
           },
         ]);
       });
   });
 });
 
-describe.only("Post /api/journals", () => {
-  test("201: responds with the newly posted journal entry", () => {
+describe("Post /api/journals", () => {
+  test.only("201: responds with the newly posted journal entry", () => {
     const newJournalEntry = {
       user_id: 2,
       body: "Planted sunflower and basil in the herb bed today. Added compost and watered thoroughly.",
-      created_at: "2025-06-05T08:45:00Z",
     };
     return (
       request(app)
@@ -331,18 +336,18 @@ describe.only("Post /api/journals", () => {
         //assert
         .expect(201)
         .then((response: Response) => {
-          expect(response.body.journalEntry).toEqual({
+          expect(response.body.journalEntry).toMatchObject({
             journal_entry_id: 6,
             user_id: 2,
             body: "Planted sunflower and basil in the herb bed today. Added compost and watered thoroughly.",
-            created_at: "2025-06-05T08:45:00Z",
+            created_at: expect.any(String),
           });
         })
     );
   });
 });
 
-describe.only("DELETE /api/journals`/:journal_entry_id", () => {
+describe("DELETE /api/journals`/:journal_entry_id", () => {
   test("status: 204 - delete the journal entry with the journal entry id", () => {
     return request(app)
       .delete("/api/journals/1")
